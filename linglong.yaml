@@ -9,7 +9,15 @@ package:
 
 base:
   id: org.deepin.foundation
-  version: 20.0.0
+  version: 20.0.0.2
+
+build:
+  kind: manual
+  manual:
+    build: |
+      source init.bash
+      ./qtbase.bash
+      ./modules.bash
 
 sources:
   - kind: git
@@ -102,29 +110,3 @@ sources:
   - kind: git
     url: https://github.com/linuxdeepin/dtkdeclarative
     commit: 5.6.25
-build:
-  kind: manual
-  manual:
-    build: |
-      # 安装xz
-      mkdir -p $PREFIX/lib/x86_64-linux-gnu
-      mkdir -p $PREFIX/bin
-      cp build/liblzma.so.5 $PREFIX/lib/x86_64-linux-gnu
-      cp build/xz $PREFIX/bin/
-      # 配置环境变量
-      export PATH=$PREFIX/bin:$PATH
-      export PKG_CONFIG_PATH=$PREFIX/lib/x86_64-linux-gnu/pkgconfig
-      export LIBRARY_PATH=$PREFIX/lib/x86_64-linux-gnu:$LIBRARY_PATH
-      export LD_LIBRARY_PATH=$PREFIX/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
-      export C_INCLUDE_PATH=$PREFIX/include:$PREFIX/include/x86_64-linux-gnu
-      export CPLUS_INCLUDE_PATH=$PREFIX/include/c++/13:$C_INCLUDE_PATH
-      export PERL5LIB=/runtime/local/lib/x86_64-linux-gnu/perl/5.28.1:/runtime/local/share/perl/5.28.1:/runtime/lib/x86_64-linux-gnu/perl5/5.28:/runtime/share/perl5:/runtime/lib/x86_64-linux-gnu/perl/5.28:/runtime/share/perl/5.28:/runtime/local/lib/site_perl:/runtime/lib/x86_64-linux-gnu/perl-base
-      # 安装qbase构建依赖
-      bash tools/deb-source.bash build/pool $PREFIX
-      ## 更新pc文件
-      for i in `ls $PKG_CONFIG_PATH/*.pc`; do
-        sed "s#/usr#$PREFIX#g" $i > /tmp/${i##*/}
-        cp /tmp/*.pc $PKG_CONFIG_PATH/
-      done
-      qtbase.bash
-      qt-module-build.bash

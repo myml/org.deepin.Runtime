@@ -1,9 +1,10 @@
 #!/bin/bash
 set -e
 # 构建qtbase
+rm -r "/project/linglong/sources/.build_cache/qtbase-opensource-src" || true
 mkdir -p "/project/linglong/sources/.build_cache/qtbase-opensource-src"
 cd "/project/linglong/sources/.build_cache/qtbase-opensource-src/"
-/project/linglong/sources/qtbase-opensource-src/configure --no-cache -prefix ${PREFIX} \
+/project/linglong/sources/qtbase-opensource-src/configure -prefix ${PREFIX} \
     -libdir ${PREFIX}/lib/${TRIPLET} \
     -plugindir ${PREFIX}/lib/${TRIPLET}/qt5/plugins \
     -qmldir ${PREFIX}/lib/${TRIPLET}/qt5/qml \
