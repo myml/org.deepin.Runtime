@@ -16,8 +16,8 @@ build:
   manual:
     build: |
       source init.bash
-      source ./qtbase.bash
-      source ./modules.bash
+      ./qtbase.bash
+      ./modules.bash
 
 sources:
   - kind: git

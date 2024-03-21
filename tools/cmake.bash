@@ -4,7 +4,6 @@ project="$(pwd)"
 while IFS= read -r pkg; do
     echo "build $pkg"
     cd "$project"
-    rm -r "linglong/sources/.build_cache/$pkg"
     mkdir -p "linglong/sources/.build_cache/$pkg"
     cd "linglong/sources/$pkg"
     cmake -B "../.build_cache/$pkg" -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=1 \

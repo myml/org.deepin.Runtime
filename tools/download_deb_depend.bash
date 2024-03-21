@@ -7,7 +7,7 @@ pkgs=$(cat /dev/stdin | sed "s#\[[^]]\+]##g" | sed "s# <\w\+># #g" | tr ',' '|')
 url=http://pools.uniontech.com/desktop-professional
 distribution=eagle
 components="main contrib"
-arch=$(uname -m)
+arch=$(dpkg --print-architecture)
 
 rm -rf ~/.aptly
 aptly mirror create -ignore-signatures -architectures=$arch -filter="$pkgs" -filter-with-deps linglong-download-depend $url $distribution $components

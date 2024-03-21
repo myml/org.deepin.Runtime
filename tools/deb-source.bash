@@ -33,7 +33,7 @@ do
     rm "$control_file"
     # 如果已安装则跳过
     if grep -q "^Package: $pkg$" /var/lib/dpkg/status && ! grep -q "^$pkg$" "$include_list_file"; then
-        echo skip > /dev/stderr
+        echo " skip" > /dev/stderr
         echo "$file" >> /tmp/deb-source-file/skip.list
     else
     # 否则安装到$PREFIX目录
