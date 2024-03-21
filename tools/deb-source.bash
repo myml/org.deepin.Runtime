@@ -45,13 +45,13 @@ do
         ar -x "$file" "$data_file"
         # 解压data.tar文件到输出目录
         mkdir "$data_list_dir"
-        tar -xvf "$data_file" -C "$data_list_dir" >> "/tmp/deb-source-file/$(basename $file).list"
+        tar -xvf "$data_file" -C "$data_list_dir" >> "/tmp/deb-source-file/$(basename "$file").list"
         rm "$data_file"
         
         # 清理不需要复制的目录
         rm -r "${data_list_dir:?}/usr/share/applications"* 2>/dev/null || true
         # 修改pc文件的prefix
-        sed -i "s#/usr#$PREFIX#g" "$data_list_dir"/usr/lib/x86_64-linux-gnu/pkgconfig/*.pc 2>/dev/null || true
+        sed -i "s#/usr#$PREFIX#g" "$data_list_dir"/usr/lib/"$TRIPLET"/pkgconfig/*.pc 2>/dev/null || true
         sed -i "s#/usr#$PREFIX#g" "$data_list_dir"/usr/share/pkgconfig/*.pc 2>/dev/null || true
         # 修改指向/lib的绝对路径的软链接
         find . -type l | while IFS= read -r file; do

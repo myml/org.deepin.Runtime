@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 
 ./modules.list.sh | while IFS= read -r pkg 
 do
@@ -11,5 +11,6 @@ do
         echo "$pkg" | ./tools/cmake.bash
     else
         echo "Can not build $pkg"
+        exit 1
     fi
 done

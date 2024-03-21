@@ -28,6 +28,8 @@ modules=(
 
 # dtk 模块
 modules+=(
+    lxqt-build-tools
+    libqtxdg
     dtkcommon
     dtkcore
     dtkgui
@@ -37,8 +39,6 @@ modules+=(
 # qt5integration
 modules+=(
     googletest
-    lxqt-build-tools
-    libqtxdg
     qt5integration
 )
 

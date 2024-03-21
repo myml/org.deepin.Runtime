@@ -7,7 +7,7 @@ DEPENDS+=", python"
 # dtkcore构建依赖
 DEPENDS+=", libgsettings-qt-dev, libuchardet-dev"
 # dtkgui构建依赖
-DEPENDS+=", libqt5xdg-dev, libqtxdg, librsvg2-dev"
+DEPENDS+=", libqt5xdg-dev, librsvg2-dev"
 
 # dtkwidget构建依赖
 DEPENDS+=", libxcb-util0-dev, libstartup-notification0-dev"
