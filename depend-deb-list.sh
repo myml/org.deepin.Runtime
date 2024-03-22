@@ -12,5 +12,9 @@ DEPENDS+=", libqt5xdg-dev, librsvg2-dev"
 # dtkwidget构建依赖
 DEPENDS+=", libxcb-util0-dev, libstartup-notification0-dev"
 
+# dde-qt5platform-plugins构建依赖
+DEPENDS+=", git,libxcb-composite0-dev,libxcb-damage0-dev"
+
+
 export DEPENDS
 echo "$DEPENDS"

@@ -28,5 +28,5 @@ echo qtbase-opensource-src | ./tools/download_deb_source.bash
 3. 使用玲珑构建 runtime
 
 ```bash
-ll-builder build
+ll-builder build --skip-fetch-source
 ```

@@ -41,6 +41,9 @@ modules+=(
     googletest
     qt5integration
 )
+modules+=(
+    dde-qt5platform-plugins
+)
 
 for item in "${modules[@]}"; do
     echo "$item"
