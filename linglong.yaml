@@ -2,14 +2,14 @@ package:
   id: org.deepin.Runtime
   name: deepin runtime
   kind: runtime
-  version: 20.0.0.4
+  version: 20.0.0.6
   description: |
     Qt is a cross-platform C++ application framework. Qt's primary feature
     is its rich set of widgets that provide standard GUI functionality.
 
 base:
   id: org.deepin.foundation
-  version: 20.0.0
+  version: 20.0.0.3
 
 build:
   kind: manual
@@ -20,93 +20,131 @@ build:
       ./modules.bash
 
 sources:
-  - kind: git
-    url: https://github.com/deepin-community/qtbase-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtsvg-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtdeclarative-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtgraphicaleffects-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtquickcontrols-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtquickcontrols2-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtscript-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtxmlpatterns-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtimageformats-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtlocation-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qt5integration
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtmultimedia-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qt3d-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtcharts-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtconnectivity-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtgamepad-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtsensors-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtspeech-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtvirtualkeyboard-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtserialport-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtnetworkauth-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qttools-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtx11extras-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/deepin-community/qtwayland-opensource-src
-    commit: master
-  - kind: git
-    url: https://github.com/linuxdeepin/qt5platform-plugins
-    commit: 5.6.25
-  - kind: git
-    url: https://github.com/linuxdeepin/dtkcommon
-    commit: 5.6.25
-  - kind: git
-    url: https://github.com/linuxdeepin/dtkcore
-    commit: 5.6.25
-  - kind: git
-    url: https://github.com/linuxdeepin/dtkgui
-    commit: 5.6.25
-  - kind: git
-    url: https://github.com/linuxdeepin/dtkwidget
-    commit: 5.6.25
-  - kind: git
-    url: https://github.com/linuxdeepin/dtkdeclarative
-    commit: 5.6.25
+  - kind: dsc
+    name: qtbase-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtbase-opensource-src/qtbase-opensource-src_5.11.3.59-1+dde.dsc
+    digest: 5fcfae8ab03ea6888b97f8c772f5e20f81f099271baed2225cb5124b8c281dc5
+  - kind: dsc
+    name: qtsvg-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtsvg-opensource-src/qtsvg-opensource-src_5.11.3.2-1+dde.dsc
+    digest: b1f3e623d127df94d3b88648c29e69fc906e04b63492b144a55a6ef88672fa42
+  - kind: dsc
+    name: qtdeclarative-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtdeclarative-opensource-src/qtdeclarative-opensource-src_5.11.3.2-1.dsc
+    digest: b782a4f74806c968b5d44171819bc034ee703714db1778bb928ce96acc783bdc
+  - kind: dsc
+    name: qtgraphicaleffects-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtgraphicaleffects-opensource-src/qtgraphicaleffects-opensource-src_5.11.3-2.dsc
+    digest: 83dd63e331ecaea10acb8943b79a1a75ced5895e41e527fb01f5584c1fdb4d27
+  - kind: dsc
+    name: qtquickcontrols-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtquickcontrols-opensource-src/qtquickcontrols-opensource-src_5.11.3-2.dsc
+    digest: c40183b6359494b7631a73ecb504bc66e202f73ccfe1d28c90aa6b358cdadc16
+  - kind: dsc
+    name: qtquickcontrols2-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtquickcontrols2-opensource-src/qtquickcontrols2-opensource-src_5.11.3.2-1+dde.dsc
+    digest: 6f39a3037a1d35a3b0d45ec613521c06f5b4083699fb4a3df375fbb0bb93f65b
+  - kind: dsc
+    name: qtscript-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtscript-opensource-src/qtscript-opensource-src_5.11.3+dfsg.2-1+dde.dsc
+    digest: 7d8598af7c41ffea0d3eb88165408897ffd43e29c8a19f6473de512766b1276d
+  - kind: dsc
+    name: qtxmlpatterns-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtxmlpatterns-opensource-src/qtxmlpatterns-opensource-src_5.11.3-2.dsc
+    digest: 71021ff9377588b13c434a85bbf8feaf357453d07cb92356ba722d69677f6a36
+  - kind: dsc
+    name: qtimageformats-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtimageformats-opensource-src/qtimageformats-opensource-src_5.11.3-2.dsc
+    digest: 9dc882b632c953ae2df3d36c064570cde1594d4346ee7a897bd096fe61f7cc4f
+  - kind: dsc
+    name: qtlocation-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtlocation-opensource-src/qtlocation-opensource-src_5.11.3+dfsg-2.dsc
+    digest: 4e8f6555ceead735100f46e80ca0755417b242a1d33d9a9cf3dc945590f8a668
+  - kind: dsc
+    name: qtmultimedia-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtmultimedia-opensource-src/qtmultimedia-opensource-src_5.11.3-2.dsc
+    digest: c66450cb7a8a3c000b937651661672bb3a9964fa5ddf0ce7523ee09077dfaf7a
+  - kind: dsc
+    name: qt3d-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qt3d-opensource-src/qt3d-opensource-src_5.11.3+dfsg-2.dsc
+    digest: c1cd5771da7c9f2c0392da3ee3e2d9066857b0a61221e43004f453dfc7ad98a7
+  - kind: dsc
+    name: qtcharts-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtcharts-opensource-src/qtcharts-opensource-src_5.11.3-2.dsc
+    digest: 7230605ac3e806b8a64b12e1ee51d99993b5cc06b3a12a3cc9a959138526a522
+  - kind: dsc
+    name: qtconnectivity-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtconnectivity-opensource-src/qtconnectivity-opensource-src_5.11.3.1-1+dde.dsc
+    digest: e5e9923dbd2ef79d3378eacfc196afbdbbaac0902e1d0d023f7cad0e4c6fd37a
+  - kind: dsc
+    name: qtgamepad-everywhere-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtgamepad-everywhere-src/qtgamepad-everywhere-src_5.11.3-2.dsc
+    digest: 2e052ef50fbe4d7176f72dcd98fe62cc344f63163b5f3d2b9157772db851da98
+  - kind: dsc
+    name: qtsensors-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtsensors-opensource-src/qtsensors-opensource-src_5.11.3-2.dsc
+    digest: dfee2176c5a6ce857d08c430fff3af6a28462d3cd7bbc94f6d3446be2ee79f48
+  - kind: dsc
+    name: qtspeech-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtspeech-opensource-src/qtspeech-opensource-src_5.11.3-3.dsc
+    digest: bb90fe96d4dbb72b8c2b891bf73888b31316edc06f92d6d30799a556804d1f0e
+  - kind: dsc
+    name: qtvirtualkeyboard-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtvirtualkeyboard-opensource-src/qtvirtualkeyboard-opensource-src_5.11.3+dfsg-2.dsc
+    digest: 3987db00b636e0e0eaa45cc27ad4f39fa54b7b82b7b71a66566647ac7b8c03e6
+  - kind: dsc
+    name: qtserialport-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtserialport-opensource-src/qtserialport-opensource-src_5.11.3-2.dsc
+    digest: 64f54692d7ff27f32b31ce00c540bfa9ed4cd368bd51c1d4977662235c21ccb9
+  - kind: dsc
+    name: qtnetworkauth-everywhere-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtnetworkauth-everywhere-src/qtnetworkauth-everywhere-src_5.11.3-2.dsc
+    digest: 88771e713348f22951a168b88e82b773657b8032eeccdb46a70c7445ff4f2c77
+  - kind: dsc
+    name: qttools-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qttools-opensource-src/qttools-opensource-src_5.11.3.3-1+dde.dsc
+    digest: bbb35ab3ff90aa17d48b9923a79065c8dd5882230781946a4988c7bd26b09855
+  - kind: dsc
+    name: qtx11extras-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtx11extras-opensource-src/qtx11extras-opensource-src_5.11.3-2.dsc
+    digest: 70b5f4ad27d08ef56a98427dbcfe017796fbab32bf0cb5afecdd389dbb615669
+  - kind: dsc
+    name: qtwayland-opensource-src
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtwayland-opensource-src/qtwayland-opensource-src_5.15.1.16-1+dde.dsc
+    digest: 979a5cb31a373a5f38d12112c514382c01ab4e682d963d81748d31f1e2c3a8e7
+  - kind: dsc
+    name: lxqt-build-tools
+    url: https://pools.uniontech.com/desktop-professional/pool/main/l/lxqt-build-tools/lxqt-build-tools_0.6.0-2.dsc
+    digest: 1a9a0d11ece118a3a5abf134dd6d10700bff89ec9cee1c748605eb234f47ca4b
+  - kind: dsc
+    name: libqtxdg
+    url: https://pools.uniontech.com/desktop-professional/pool/main/libq/libqtxdg/libqtxdg_3.3.1.3-1+deepin.dsc
+    digest: 92cd363392183de81f8940c43a3eab601546a893213961a56605585935dee693
+  - kind: dsc
+    name: dtkcommon
+    url: https://pools.uniontech.com/desktop-professional/pool/main/d/dtkcommon/dtkcommon_5.6.8-1.dsc
+    digest: 2e64d9412bc997e66325fbc3b4ab6d8aa94769f96fa35748f79ceecdd8d97875
+  - kind: dsc
+    name: dtkcore
+    url: https://pools.uniontech.com/desktop-professional/pool/main/d/dtkcore/dtkcore_5.6.8.5-1.dsc
+    digest: f8c1244118d733da9aa5dbb0d3142297c15b460a5bfdf742d18755ba8b22756a
+  - kind: dsc
+    name: dtkgui
+    url: https://pools.uniontech.com/desktop-professional/pool/main/d/dtkgui/dtkgui_5.6.8.6-1.dsc
+    digest: 9a66f3cd785f21a1c32e2dcc3dadbe31e4cfaada96ae55a79c2733e7e7f96269
+  - kind: dsc
+    name: dtkwidget
+    url: https://pools.uniontech.com/desktop-professional/pool/main/d/dtkwidget/dtkwidget_5.6.11.15-1.dsc
+    digest: e82335b3505a2debf615ffce474f141b79e418e0e708675d13a6083ab771f6d8
+  - kind: dsc
+    name: googletest
+    url: https://pools.uniontech.com/desktop-professional/pool/main/g/googletest/googletest_1.8.1-3.dsc
+    digest: 7ccce8fd0b4263c83998fa190a5ddba4c193a22581c886743c6836ee11044917
+  - kind: dsc
+    name: qt5integration
+    url: https://pools.uniontech.com/desktop-professional/pool/main/q/qt5integration/qt5integration_5.6.11.8-1.dsc
+    digest: ca3f1b7f8fb5ac8425411fa673cf392506156a7090181ac6e7dc29123be85d41
+  - kind: dsc
+    name: dde-qt5platform-plugins
+    url: https://pools.uniontech.com/desktop-professional/pool/main/d/dde-qt5platform-plugins/dde-qt5platform-plugins_5.6.6.9-1.dsc
+    digest: 5f00e36cbeca884c28a3b7efa039143464724698dcb34670dbdf1e3020233f43

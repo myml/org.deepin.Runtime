@@ -32,4 +32,5 @@ export CPLUS_INCLUDE_PATH=$SYSTEM_CPLUS_INCLUDE_PATH:$SYSTEM_C_INCLUDE_PATH:$RUN
 export PERL5LIB=$PREFIX/local/lib/${TRIPLET}/perl/5.28.1:$PREFIX/local/share/perl/5.28.1:$PREFIX/lib/${TRIPLET}/perl5/5.28:$PREFIX/share/perl5:$PREFIX/lib/${TRIPLET}/perl/5.28:$PREFIX/share/perl/5.28:$PREFIX/local/lib/site_perl:$PREFIX/lib/${TRIPLET}/perl-base
 
 # pkg-config默认会去掉INCLUDE_PATH存在的值，这会导致qtbase构建gui时设置错误的QMAKE_INCDIR_OPENGL
-export PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1
+# 尝试使用 PKG_CONFIG_ALLOW_SYSTEM_CFLAGS = 1 让 pkg-config 不移除 /usr/include ，会引起c++ include_next的问题。
+# export PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1
