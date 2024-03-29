@@ -32,7 +32,7 @@ do
     pkg=$(tar -xf "$control_file" ./control -O | grep '^Package:' | awk '{print $2}')
     rm "$control_file"
     # 如果已安装则跳过
-    if grep -q "^Package: $pkg$" /var/lib/dpkg/status && ! grep -q "^$pkg$" "$include_list_file"; then
+    if (grep -q "^Package: $pkg$" /var/lib/dpkg/status /runtime/packages.list "$PREFIX/packages.list") && ! grep -q "^$pkg$" "$include_list_file"; then
         echo " skip" > /dev/stderr
         echo "$file" >> /tmp/deb-source-file/skip.list
     else

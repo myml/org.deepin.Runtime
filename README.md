@@ -12,20 +12,13 @@ linglong.yaml 用于生成 org.deepin.Runtime
 
 构建步骤：
 
-1. 下载源码
-
-```bash
-echo qtbase-opensource-src | ./tools/download_deb_source.bash
-./modules.list.sh | ./tools/download_deb_source.bash
-```
-
-2. 下载构建依赖
+1. 下载构建依赖
 
 ```bash
 ./depend-deb-list.sh | ./tools/download_deb_depend.bash
 ```
 
-3. 使用玲珑构建 runtime
+2. 使用玲珑构建 runtime
 
 ```bash
 ll-builder build --skip-fetch-source

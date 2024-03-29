@@ -13,5 +13,4 @@ do
         echo "Can not build $pkg"
         exit 1
     fi
-    grep ^Package: "linglong/sources/$pkg/debian/control" >> "$PREFIX/packages.list"
 done

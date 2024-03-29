@@ -52,5 +52,3 @@ make -j8
 # 由于 pkg-config --cflags gl 会自动移除系统已经设置的/usr/include，_GL_INCDIRS 被错误的设置为 /usr/include/libdrm
 sed -i 's#_GL_INCDIRS "/usr/include/libdrm"#_GL_INCDIRS "/usr/include/libdrm" "/usr/include"#' lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake
 make install
-
-grep ^Package: "linglong/sources/qtbase-opensource-src/debian/control" > "$PREFIX/packages.list" || true
