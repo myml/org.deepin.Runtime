@@ -15,11 +15,10 @@ build:
   kind: manual
   manual:
     build: |
-      grep ^Package: "linglong/sources/qtbase-opensource-src/debian/control" > "$PREFIX/packages.list"
-      ./modules.list.sh | xargs -i grep ^Package: "linglong/sources/{}/debian/control" > "$PREFIX/packages.list"
+      ./packages.bash > "$PREFIX/packages.list"
       source init.bash
-      ./qtbase.bash
-      ./modules.bash
+      ./qtbase.bash | tee qtbase.log
+      ./modules.bash | tee modules.log
 
 sources:
   - kind: dsc
