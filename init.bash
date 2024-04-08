@@ -1,10 +1,6 @@
 #!/bin/bash
 
-export JOBS
-export VERSION
-export APPID
-export ARCH
-export TRIPLET
+export JOBS=8
 
 set -e    
 # 安装qbase构建依赖
