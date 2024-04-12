@@ -4,9 +4,9 @@ set -e
 # 去掉 [*] 和 <*> 便于从 deb 复制 Build-Depends
 pkgs=$(cat /dev/stdin | sed "s#\[[^]]\+]##g" | sed "s# <\w\+># #g" | tr ',' '|')
 
-url=http://pools.uniontech.com/desktop-professional
-distribution=eagle
-components="main contrib"
+url=https://pools.uniontech.com/deepin-beige
+distribution=beige
+components="main community"
 arch=$(dpkg --print-architecture)
 
 rm -rf ~/.aptly

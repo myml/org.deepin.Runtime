@@ -1,12 +1,13 @@
 #!/bin/bash
 set -e
+set -x
 # 这个脚本用于从仓库下载deb源码包
 # 用法 echo pkg_name | ./tools/download_deb_source.bash
 # 源码会下载到 linglong/sources/pkg_name
 
-url=http://pools.uniontech.com/desktop-professional
-distribution=eagle
-components="contrib main"
+url=https://pools.uniontech.com/deepin-beige
+distribution=beige
+components="main community"
 
 mkdir -p linglong/sources || true
 cd linglong/sources
@@ -17,6 +18,9 @@ cd "$tmpdir"
 for component in $components;do
     curl "$url/dists/$distribution/$component/source/Sources.gz" | gunzip >> Sources
 done;
+
+# 去掉Version中的Epoch
+sed 's#Version: [0-9]:#Version: #' -i Sources
 
 while IFS= read -r pkg; do
     # 解析Sources文件，获取pkg的存放目录

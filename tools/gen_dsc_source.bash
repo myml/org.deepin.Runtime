@@ -2,9 +2,9 @@
 set -e
 # 这个脚本用于生成modules的sources列表
 
-url=http://pools.uniontech.com/desktop-professional
-distribution=eagle
-components="contrib main"
+url=https://pools.uniontech.com/deepin-beige
+distribution=beige
+components="main community"
 
 tmpdir=$(mktemp -d)
 cd "$tmpdir"

@@ -15,12 +15,12 @@ modules=(
     qt3d-opensource-src
     qtcharts-opensource-src
     qtconnectivity-opensource-src
-    qtgamepad-everywhere-src
+    qtgamepad-opensource-src
     qtsensors-opensource-src
     qtspeech-opensource-src
     qtvirtualkeyboard-opensource-src
     qtserialport-opensource-src
-    qtnetworkauth-everywhere-src
+    qtnetworkauth-opensource-src
     qttools-opensource-src
     qtx11extras-opensource-src
     qtwayland-opensource-src
@@ -37,6 +37,7 @@ modules+=(
     dtkcore
     dtkgui
     dtkwidget
+    dtkdeclarative
 )
 
 # qt5integration
