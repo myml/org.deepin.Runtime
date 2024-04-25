@@ -54,12 +54,25 @@ do
         sed -i "s#/usr#$PREFIX#g" "$data_list_dir"/usr/lib/"$TRIPLET"/pkgconfig/*.pc 2>/dev/null || true
         sed -i "s#/usr#$PREFIX#g" "$data_list_dir"/usr/share/pkgconfig/*.pc 2>/dev/null || true
         # 修改指向/lib的绝对路径的软链接
-        find . -type l | while IFS= read -r file; do
+        find "$data_list_dir" -type l | while IFS= read -r file; do
             linkTarget=$(readlink "$file") 
             # 如果指向的路径以/lib开头，并且文件不存在，则添加 /runtime 前缀
             # 部分 dev 包会创建 so 文件的绝对链接指向 /lib 目录下
             if echo "$linkTarget" | grep -q ^/lib && ! [ -f "$linkTarget" ]; then
-                ln -sf "$target$linkTarget" "$file" 
+                ln -sf "$target$linkTarget" "$file"
+                echo "    FIX LINK" "$linkTarget" "=>" "$target$linkTarget"
+            fi
+        done
+        # 修复动态库 RUNPATH
+        find "$data_list_dir" -type f -exec file {} \; | grep 'shared object' | awk -F: '{print $1}' | while IFS= read -r file; do
+            runpath=$(readelf -d "$file" | grep RUNPATH |  awk '{print $NF}')
+            if echo "$runpath" | grep -q '^\[/'; then
+                runpath=${runpath#[}
+                runpath=${runpath%]}
+                newRunpath=${runpath//usr\/lib/runtime\/lib}
+                newRunpath=${newRunpath//usr/runtime}
+                patchelf --set-rpath "$newRunpath" "$file"
+                echo "    FIX RUNPATH" "$file" "$runpath" "=>" "$newRunpath"
             fi
         done
         # 复制/lib,/bin,/usr目录
@@ -74,3 +87,4 @@ done < "$deb_list_file"
 
 # 清理临时目录
 rm -r "$out_dir"
+set +x
