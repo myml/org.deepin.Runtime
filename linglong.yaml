@@ -4,7 +4,7 @@ package:
   id: org.deepin.Runtime
   name: deepin runtime
   kind: runtime
-  version: 20.0.0.9
+  version: 20.0.0.10
   description: |
     Qt is a cross-platform C++ application framework. Qt's primary feature
     is its rich set of widgets that provide standard GUI functionality.
@@ -110,6 +110,14 @@ sources:
     name: qtwayland-opensource-src
     url: https://pools.uniontech.com/desktop-professional/pool/main/q/qtwayland-opensource-src/qtwayland-opensource-src_5.15.1.16-1+dde.dsc
     digest: 979a5cb31a373a5f38d12112c514382c01ab4e682d963d81748d31f1e2c3a8e7
+  - kind: dsc
+    name: qtwebchannel-opensource-src
+    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtwebchannel-opensource-src/qtwebchannel-opensource-src_5.15.8-1+dde.dsc
+    digest: b5a66a3f15813a6cb325a92cc572c424402937845f18d703e37a0cb52b194dfa
+  - kind: dsc
+    name: qtwebsockets-opensource-src
+    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtwebsockets-opensource-src/qtwebsockets-opensource-src_5.15.8-1+dde.dsc
+    digest: fe035db10c63888d70f98005fa99464cb64ab93479a8bb5ac1b4b0949f303afe
   - kind: dsc
     name: lxqt-build-tools
     url: https://pools.uniontech.com/desktop-professional/pool/main/l/lxqt-build-tools/lxqt-build-tools_0.6.0-2.dsc
