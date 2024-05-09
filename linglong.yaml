@@ -4,7 +4,7 @@ package:
   id: org.deepin.Runtime
   name: deepin runtime
   kind: runtime
-  version: 20.0.0.10
+  version: 20.0.0.11
   description: |
     Qt is a cross-platform C++ application framework. Qt's primary feature
     is its rich set of widgets that provide standard GUI functionality.
@@ -16,6 +16,7 @@ build: |
   source init.bash
   ./qtbase.bash | tee qtbase.log
   ./modules.bash | tee modules.log
+  bash
 
 sources:
   - kind: dsc

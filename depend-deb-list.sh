@@ -15,6 +15,8 @@ DEPENDS+=", libxcb-util0-dev, libstartup-notification0-dev"
 # dde-qt5platform-plugins构建依赖
 DEPENDS+=", git,libxcb-composite0-dev,libxcb-damage0-dev"
 
+# 安装fcitx5-frontend-qt5
+DEPENDS+=", fcitx5-frontend-qt5"
 
 export DEPENDS
 echo "$DEPENDS"
