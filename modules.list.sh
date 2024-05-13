@@ -26,6 +26,7 @@ modules=(
     qtwayland-opensource-src
     qtwebchannel-opensource-src
     qtwebsockets-opensource-src
+    qttranslations-opensource-src
 )
 
 # dtk 模块
