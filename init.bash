@@ -4,7 +4,7 @@ export JOBS=8
 
 set -e    
 # 安装qbase构建依赖
-bash tools/deb-source.bash linglong/pool "$PREFIX"
+bash tools/deb-source.bash linglong/sources "$PREFIX"
 # 配置环境变量
 export PATH=$PATH:$PREFIX/bin
 export LIBRARY_PATH=$PREFIX/lib:$PREFIX/lib/${TRIPLET}
@@ -15,11 +15,9 @@ RUNTIME_PKG_CONFIG_PATH=/runtime/lib/pkgconfig:/runtime/lib/${TRIPLET}/pkgconfig
 APP_PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig:$PREFIX/lib/${TRIPLET}/pkgconfig:$PREFIX/share/pkgconfig
 export PKG_CONFIG_PATH=$SYSTEM_PKG_CONFIG_PATH:$RUNTIME_PKG_CONFIG_PATH:$APP_PKG_CONFIG_PATH
 
-# dtk 有个错误的include <QGSettings/QGSettings> 应该写成 <QGSettings>，在新版本dtk已修复，这里先添加一个path修复
-DTK_FIX_QGSETTTINGS_PATH=/runtime/include/${TRIPLET}/qt5
 RUNTIME_C_INCLUDE_PATH=/runtime/lib/gcc/${TRIPLET}/13/include:/runtime/local/include:/runtime/lib/gcc/${TRIPLET}/13/include-fixed:/runtime/include/${TRIPLET}:/runtime/include
 SYSTEM_C_INCLUDE_PATH=/usr/lib/gcc/${TRIPLET}/13/include:/usr/local/include:/usr/lib/gcc/${TRIPLET}/13/include-fixed:/usr/include/${TRIPLET}:/usr/include
-export C_INCLUDE_PATH=$RUNTIME_C_INCLUDE_PATH:$SYSTEM_C_INCLUDE_PATH:$DTK_FIX_QGSETTTINGS_PATH
+export C_INCLUDE_PATH=$RUNTIME_C_INCLUDE_PATH:$SYSTEM_C_INCLUDE_PATH
 
 RUNTIME_CPLUS_INCLUDE_PATH=/runtime/include/c++/13:/runtime/include/${TRIPLET}/c++/13
 SYSTEM_CPLUS_INCLUDE_PATH=/usr/include/c++/13:/usr/include/${TRIPLET}/c++/13

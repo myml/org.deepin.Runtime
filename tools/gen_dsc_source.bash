@@ -17,10 +17,10 @@ while IFS= read -r pkg; do
     # 解析Sources文件，获取pkg的存放目录
     path=$(cat Sources | grep -E "^Package:|^Version:|^Directory:" | 
         awk 'BEGIN { FS = ": " } { if ($1 == "Package") { pkg = $2 } else if ($1 == "Version") { ver = $2 } else if ($1 == "Directory" && pkg=="'$pkg'") { printf "%s/%s_%s.dsc\n",$2, pkg, ver } }')
-    echo "- kind: dsc"
-    echo "  name: $pkg"
-    echo "  url: $url/$path"
-    echo "  digest: $(curl -s "$url/$path" | sha256sum | awk '{print $1}')"
+    echo "  - kind: dsc"
+    echo "    name: $pkg"
+    echo "    url: $url/$path"
+    echo "    digest: $(curl -s "$url/$path" | sha256sum | awk '{print $1}')"
 done;
 
 rm -r "$tmpdir"
