@@ -53,5 +53,5 @@ make "-j$JOBS"
 sed -i 's#_GL_INCDIRS "/usr/include/libdrm"#_GL_INCDIRS "/usr/include/libdrm" "/usr/include"#' lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake
 make install "-j$JOBS"
 
-mkdir -p /runtime/include/x86_64-linux-gnu/qt5/QtXcb/5.15.8/QtXcb/private
-cp /project/linglong/sources/qtbase-opensource-src/src/plugins/platforms/xcb/*.h /runtime/include/x86_64-linux-gnu/qt5/QtXcb/5.15.8/QtXcb/private/
+mkdir -p "/runtime/include/${TRIPLET}/qt5/QtXcb/5.15.8/QtXcb/private"
+cp /project/linglong/sources/qtbase-opensource-src/src/plugins/platforms/xcb/*.h "/runtime/include/${TRIPLET}/qt5/QtXcb/5.15.8/QtXcb/private/"
