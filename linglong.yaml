@@ -22,6 +22,7 @@ build: |
 
 sources:
   # linglong:gen_dsc_source sources https://pools.uniontech.com/deepin-beige beige main
+  # linglong:gen_dsc_source install qtbase-opensource-src
   # linglong:gen_dsc_source install qtsvg-opensource-src
   # linglong:gen_dsc_source install qtdeclarative-opensource-src
   # linglong:gen_dsc_source install qtgraphicaleffects-opensource-src
@@ -51,6 +52,10 @@ sources:
   # linglong:gen_dsc_source install dtkcommon, dtkcore, dtkwidget, dtkgui, dtkdeclarative
   # linglong:gen_dsc_source install googletest, qt5integration, dde-qt5platform-plugins
   # linglong:gen_dsc_source begin
+  - kind: dsc
+    name: qtbase-opensource-src
+    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtbase-opensource-src/qtbase-opensource-src_5.15.8-1+deepin9.dsc
+    digest: 409aae678b8ef3ef6b07464b1695d325492db8c11e865446f28957a6dc92f78a
   - kind: dsc
     name: qtsvg-opensource-src
     url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtsvg-opensource-src/qtsvg-opensource-src_5.15.8-1+dde.dsc
