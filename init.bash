@@ -4,7 +4,7 @@ export JOBS=8
 
 set -e    
 # 安装qbase构建依赖
-bash tools/deb-source.bash linglong/sources "$PREFIX"
+bash ./install_dep linglong/sources "$PREFIX"
 # 配置环境变量
 export PATH=$PATH:$PREFIX/bin
 export LIBRARY_PATH=$PREFIX/lib:$PREFIX/lib/${TRIPLET}
