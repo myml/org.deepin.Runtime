@@ -192,6 +192,10 @@ sources:
     name: qt5integration
     url: https://pools.uniontech.com/deepin-beige/pool/main/q/qt5integration/qt5integration_5.6.30.dsc
     digest: 21f29684bec4a56f5eb5b7222d1d1f47c6df4934157c9dda613e6909034b0183
+  - kind: dsc
+    name: dde-qt5platform-plugins
+    url: https://pools.uniontech.com/deepin-beige/pool/main/d/dde-qt5platform-plugins/dde-qt5platform-plugins_5.6.30.dsc
+    digest: 5ea1b142392c0879ef8a507591578ca3e16d0e71675fb41c44e5508d396d88b5
 
   # linglong:gen_dsc_source end
 
