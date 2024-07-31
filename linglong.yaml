@@ -1,24 +1,30 @@
 version: "1"
 
 package:
-  id: org.deepin.Runtime
+  id: org.deepin.runtime.dtk
   name: deepin runtime
   kind: runtime
-  version: 2405.0.0.1
+  version: 23.1.0.0
   description: |
     Qt is a cross-platform C++ application framework. Qt's primary feature
     is its rich set of widgets that provide standard GUI functionality.
 
-base: org.deepin.foundation/2405.0.0
+base: org.deepin.base/23.1.0
 
 build: |
-  set -x
+  # 生成包列表
   ./packages.bash > "$PREFIX/packages.list"
   # 跳过qtchooser安装
   echo Package: qtchooser >> "$PREFIX/packages.list"
+  # 初始化构建环境
   source init.bash
-  ./qtbase.bash 2>&1 | tee qtbase.log
-  ./modules.bash 2>&1 | tee modules.log
+  # 开始构建
+  rm -rf logs && mkdir logs
+  bash -e build.bash 2>&1 | tee logs/build.log
+  # 设置环境变量
+  mkdir -p $PREFIX/etc
+  echo "export QT_QPA_PLATFORM_PLUGIN_PATH=$PREFIX/lib/$TRIPLET/qt5/plugins/platforms" >> "$PREFIX/etc/profile"
+  echo "export QT_PLUGIN_PATH=$PREFIX/lib/$TRIPLET/qt5/plugins" >> "$PREFIX/etc/profile"
 
 sources:
   # linglong:gen_dsc_source sources https://pools.uniontech.com/deepin-beige beige main
@@ -28,29 +34,25 @@ sources:
   # linglong:gen_dsc_source install qtgraphicaleffects-opensource-src
   # linglong:gen_dsc_source install qtquickcontrols-opensource-src
   # linglong:gen_dsc_source install qtquickcontrols2-opensource-src
-  # linglong:gen_dsc_source install qtscript-opensource-src
-  # linglong:gen_dsc_source install qtxmlpatterns-opensource-src
   # linglong:gen_dsc_source install qtimageformats-opensource-src
-  # linglong:gen_dsc_source install qtlocation-opensource-src
   # linglong:gen_dsc_source install qtmultimedia-opensource-src
-  # linglong:gen_dsc_source install qt3d-opensource-src
-  # linglong:gen_dsc_source install qtcharts-opensource-src
-  # linglong:gen_dsc_source install qtconnectivity-opensource-src
-  # linglong:gen_dsc_source install qtgamepad-opensource-src
-  # linglong:gen_dsc_source install qtsensors-opensource-src
   # linglong:gen_dsc_source install qtspeech-opensource-src
-  # linglong:gen_dsc_source install qtvirtualkeyboard-opensource-src
-  # linglong:gen_dsc_source install qtserialport-opensource-src
-  # linglong:gen_dsc_source install qtnetworkauth-opensource-src
+  # qtx11extras 需要使用 qttools 的 lrelease
   # linglong:gen_dsc_source install qttools-opensource-src
   # linglong:gen_dsc_source install qtx11extras-opensource-src
   # linglong:gen_dsc_source install qtwayland-opensource-src
-  # linglong:gen_dsc_source install qtwebchannel-opensource-src
-  # linglong:gen_dsc_source install qtwebsockets-opensource-src
   # linglong:gen_dsc_source install qttranslations-opensource-src
-  # linglong:gen_dsc_source install lxqt-build-tools, libqtxdg
-  # linglong:gen_dsc_source install dtkcommon, dtkcore, dtkwidget, dtkgui, dtkdeclarative
-  # linglong:gen_dsc_source install googletest, qt5integration, dde-qt5platform-plugins
+  # libqtxdg 依赖 lxqt-build-tools
+  # linglong:gen_dsc_source install lxqt-build-tools
+  # linglong:gen_dsc_source install libqtxdg
+  # linglong:gen_dsc_source install dtkcommon
+  # linglong:gen_dsc_source install dtkcore
+  # linglong:gen_dsc_source install dtkgui
+  # linglong:gen_dsc_source install dtkwidget
+  # linglong:gen_dsc_source install dtkdeclarative
+  # linglong:gen_dsc_source install googletest
+  # linglong:gen_dsc_source install qt5integration
+  # linglong:gen_dsc_source install dde-qt5platform-plugins
   # linglong:gen_dsc_source begin
   - kind: dsc
     name: qtbase-opensource-src
@@ -77,61 +79,17 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtquickcontrols2-opensource-src/qtquickcontrols2-opensource-src_5.15.8-1+dde.dsc
     digest: 0f28fcd21a5a7729ae64b13e4b86945bda6f67a03b8a8835c53b9f9dc7af70d0
   - kind: dsc
-    name: qtscript-opensource-src
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtscript-opensource-src/qtscript-opensource-src_5.15.7-1+dde1.dsc
-    digest: 4c25d3f003ae853e359226fa357e9107e81609ff55e45dd2ff5e8d9e3e5ce3e4
-  - kind: dsc
-    name: qtxmlpatterns-opensource-src
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtxmlpatterns-opensource-src/qtxmlpatterns-opensource-src_5.15.7-1+dde.dsc
-    digest: 5658134445cd9d8759837bcba7cc33aa3eb9f7f7f25d21de7f8685305b9f262f
-  - kind: dsc
     name: qtimageformats-opensource-src
     url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtimageformats-opensource-src/qtimageformats-opensource-src_5.15.8-1+dde.dsc
     digest: 56f66926a6cb68e6884fe63cbce70c9d334392fb90a4c7fd7382441d92b9520e
-  - kind: dsc
-    name: qtlocation-opensource-src
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtlocation-opensource-src/qtlocation-opensource-src_5.15.8-2deepin1+rb1.dsc
-    digest: 48a52c5d60562989b5af84a038a6ac9871eaed8e0105aa81a69d3fdd38703996
   - kind: dsc
     name: qtmultimedia-opensource-src
     url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtmultimedia-opensource-src/qtmultimedia-opensource-src_5.15.8-1+dde.dsc
     digest: e6faf512352a36ea58a1867767887e0d918e11fa598cc0e32558935686f4f694
   - kind: dsc
-    name: qt3d-opensource-src
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qt3d-opensource-src/qt3d-opensource-src_5.15.7-1+dde.dsc
-    digest: dd58b3a4faf440848ddde9e6dcc4f3d4da0d2c35c9d3476bd0f28e65fef3a16c
-  - kind: dsc
-    name: qtcharts-opensource-src
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtcharts-opensource-src/qtcharts-opensource-src_5.15.7-1+dde.dsc
-    digest: 30ac07002824a0884e5dabfe946e81815fc2b85b7a1dda8312f5817f7adce46a
-  - kind: dsc
-    name: qtconnectivity-opensource-src
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtconnectivity-opensource-src/qtconnectivity-opensource-src_5.15.7-1+dde.dsc
-    digest: 0af674c2e34c81492cca96e20753d9c79720f7e92c43729391939c1257bc22a9
-  - kind: dsc
-    name: qtgamepad-opensource-src
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtgamepad-opensource-src/qtgamepad-opensource-src_5.15.7-1+dde.dsc
-    digest: 769db3c74b5efe6bcf7a99924ae54f7c12a43a73d4f46b2e9c75b568c7f0c33f
-  - kind: dsc
-    name: qtsensors-opensource-src
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtsensors-opensource-src/qtsensors-opensource-src_5.15.8-1+dde.dsc
-    digest: ae1789495bab1cc6421bdad6f40c44c58587ce2a7ec81525772ddb057eb779f5
-  - kind: dsc
     name: qtspeech-opensource-src
     url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtspeech-opensource-src/qtspeech-opensource-src_5.15.8-1+dde.dsc
     digest: d7cc91a74abdd980867c21fa41cc55ab83748159e04ebf2281ec95ee3446381f
-  - kind: dsc
-    name: qtvirtualkeyboard-opensource-src
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtvirtualkeyboard-opensource-src/qtvirtualkeyboard-opensource-src_5.15.7-1+dde.dsc
-    digest: 2079de89e0459442d0c9faeb61cb1b1875bff39938fe7b8d583be771d2ba0129
-  - kind: dsc
-    name: qtserialport-opensource-src
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtserialport-opensource-src/qtserialport-opensource-src_5.15.7-1+dde.dsc
-    digest: 51544d1dba451582a444aafba7481b0d8badcad8cef676428bd44a252152b7a4
-  - kind: dsc
-    name: qtnetworkauth-opensource-src
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtnetworkauth-opensource-src/qtnetworkauth-opensource-src_5.15.7-1+dde.dsc
-    digest: ee2a5d18fcf8ce61b9503f6f3214d18a480ffb289d0ba91def4e77fdfaa016bf
   - kind: dsc
     name: qttools-opensource-src
     url: https://pools.uniontech.com/deepin-beige/pool/main/q/qttools-opensource-src/qttools-opensource-src_5.15.8-1+dde1.dsc
@@ -144,14 +102,6 @@ sources:
     name: qtwayland-opensource-src
     url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtwayland-opensource-src/qtwayland-opensource-src_5.15.8-1+dde.dsc
     digest: 4265d27d9fa5a2e8335f620c4e346800181ccb368909ec93035f03eff9304ba6
-  - kind: dsc
-    name: qtwebchannel-opensource-src
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtwebchannel-opensource-src/qtwebchannel-opensource-src_5.15.8-1+dde.dsc
-    digest: b5a66a3f15813a6cb325a92cc572c424402937845f18d703e37a0cb52b194dfa
-  - kind: dsc
-    name: qtwebsockets-opensource-src
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtwebsockets-opensource-src/qtwebsockets-opensource-src_5.15.8-1+dde.dsc
-    digest: fe035db10c63888d70f98005fa99464cb64ab93479a8bb5ac1b4b0949f303afe
   - kind: dsc
     name: qttranslations-opensource-src
     url: https://pools.uniontech.com/deepin-beige/pool/main/q/qttranslations-opensource-src/qttranslations-opensource-src_5.15.8-1+dde.dsc
@@ -173,13 +123,13 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/d/dtkcore/dtkcore_5.6.30.dsc
     digest: 5c6f1d6d3d5285e34fc40b576336fc0652603b82381a82f5e6b09598eca842d5
   - kind: dsc
-    name: dtkwidget
-    url: https://pools.uniontech.com/deepin-beige/pool/main/d/dtkwidget/dtkwidget_5.6.30.dsc
-    digest: b9a0fb9ba89c2b865660327a660d841d2f925410bc9ab55c99ea2d2660fce053
-  - kind: dsc
     name: dtkgui
     url: https://pools.uniontech.com/deepin-beige/pool/main/d/dtkgui/dtkgui_5.6.30.dsc
     digest: dddf17390ad63975da7291300719402b86ef2b29262ed451c2131e7c237588d8
+  - kind: dsc
+    name: dtkwidget
+    url: https://pools.uniontech.com/deepin-beige/pool/main/d/dtkwidget/dtkwidget_5.6.30.dsc
+    digest: b9a0fb9ba89c2b865660327a660d841d2f925410bc9ab55c99ea2d2660fce053
   - kind: dsc
     name: dtkdeclarative
     url: https://pools.uniontech.com/deepin-beige/pool/main/d/dtkdeclarative/dtkdeclarative_5.6.30.dsc
@@ -199,16 +149,11 @@ sources:
 
   # linglong:gen_dsc_source end
 
-  # linglong:gen_deb_source sources amd64 https://pools.uniontech.com/deepin-beige beige main community
-  # linglong:gen_deb_source install libc
-
-  # linglong:gen_deb_source sources amd64 https://pools.uniontech.com/deepin-beige beige main community
+  # linglong:gen_deb_source sources amd64 https://pools.uniontech.com/deepin-beige beige main
   # qtbase构建依赖
   # linglong:gen_deb_source install default-libmysqlclient-dev, firebird-dev [kfreebsd-any linux-any], freetds-dev, libasound2-dev [linux-any], libatspi2.0-dev, libcups2-dev, libdbus-1-dev, libdouble-conversion-dev, libdrm-dev [linux-any], libfontconfig1-dev, libfreetype6-dev, libgbm-dev [linux-any kfreebsd-any], libgl-dev, libgles-dev, libglib2.0-dev, libglu1-mesa-dev | libglu-dev, libgtk-3-dev, libharfbuzz-dev (>= 1.6.0~), libicu-dev, libinput-dev [linux-any], libjpeg-dev, libkrb5-dev, libmd4c-dev, libmtdev-dev [linux-any], libpcre2-dev, libpng-dev, libpq-dev, libproxy-dev, libpulse-dev, libsqlite3-dev, libssl-dev, libudev-dev [linux-any], libvulkan-dev [linux-any], libx11-dev, libx11-xcb-dev, libxcb-glx0-dev, libxcb-icccm4-dev, libxcb-image0-dev, libxcb-keysyms1-dev, libxcb-randr0-dev, libxcb-render-util0-dev, libxcb-render0-dev, libxcb-shape0-dev, libxcb-shm0-dev, libxcb-sync-dev, libxcb-util-dev, libxcb-xfixes0-dev, libxcb-xinerama0-dev, libxcb-xinput-dev, libxcb-xkb-dev, libxcb1-dev, libxext-dev, libxi-dev, libxkbcommon-dev, libxkbcommon-x11-dev, libxrender-dev, libzstd-dev, pkg-config, pkg-kde-tools (>= 0.15.17~), publicsuffix, unixodbc-dev, zlib1g-dev
   # qtsvg构建依赖
-  # linglong:gen_deb_source install python
-  # qtlocation构建依赖
-  # linglong:gen_deb_source install rapidjson-dev, libboost1.83-dev, libprotozero-dev
+  # linglong:gen_deb_source install python3
   # dtkcore构建依赖
   # linglong:gen_deb_source install libgsettings-qt-dev, libuchardet-dev, libspdlog-dev
   # dtkgui构建依赖
@@ -216,7 +161,7 @@ sources:
   # dtkwidget构建依赖
   # linglong:gen_deb_source install libxcb-util0-dev, libstartup-notification0-dev
   # dde-qt5platform-plugins构建依赖
-  # linglong:gen_deb_source install git, libxcb-composite0-dev, libxcb-damage0-dev, extra-cmake-modules, libkf5wayland-dev
+  # linglong:gen_deb_source install libxcb-composite0-dev, libxcb-damage0-dev, extra-cmake-modules, libkf5wayland-dev
   # 安装fcitx5-frontend-qt5
   # linglong:gen_deb_source install fcitx5-frontend-qt5
   - kind: file
@@ -385,12 +330,6 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/libr/librsvg/gir1.2-rsvg-2.0_2.54.7+dfsg-2deepin1_amd64.deb
     digest: dedd8a6360792f7a0da10e7fc23dfbd01b48723b03b981baa9a8e26f96904e4e
   - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/g/git/git_2.43.4-0deepin1_amd64.deb
-    digest: 3f5c0e34caf03e8b6abf1ddbd7846629ae635503df0b6b45e81c3315e6c3749b
-  - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/g/git/git-man_2.43.4-0deepin1_all.deb
-    digest: eb70dda9b862fa21184f7570e0955322870b0294f9d9a967335460ea65fa22aa
-  - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/g/gtk+3.0/gtk-update-icon-cache_3.24.41-1deepin1_amd64.deb
     digest: 5a9a19405f255726761ae5ca713064be5a9142462b4f4cd6b0bc68a23207b686
   - kind: file
@@ -418,9 +357,6 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/a/argon2/libargon2-1_0~20190702+dfsg-3_amd64.deb
     digest: a1e5a095e5d2459810476d5a1e6257c44709211469ab3f973e756844b7adb7ad
   - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/g/gcc-13/libasan8_13.2.0-3deepin2_amd64.deb
-    digest: dc31cd5e73ddfe5c300abb02e2d8940e76f9ef2ed07d2b050899d3a00d62a216
-  - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/a/alsa-lib/libasound2_1.2.8-1_amd64.deb
     digest: 9369d835efeb62d2e639a45a2cc2ed5110ad259bbf0a3be12ea98475c85beab6
   - kind: file
@@ -444,9 +380,6 @@ sources:
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/a/at-spi2-core/libatk1.0-dev_2.50.0-1_amd64.deb
     digest: 0d4d093b2dffb9a097f6e21317814b3a229a21846f9c931d4a4c22ed302dff95
-  - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/g/gcc-13/libatomic1_13.2.0-3deepin2_amd64.deb
-    digest: 3f9abfc6f99730ebcb3f12da87f93c47db9e26f35d19d9a65a9c2d38bde97bf1
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/a/at-spi2-core/libatspi2.0-0_2.50.0-1_amd64.deb
     digest: 119b3d4e3a1d9aca00246c2cdae2dd5ab803b0fbc08d3ba2a71ecebf987380d0
@@ -477,9 +410,6 @@ sources:
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/u/util-linux/libblkid1_2.39.3-6deepin1_amd64.deb
     digest: 1c0d4c5b5efec4a282652df9793083bdd4e7fc0ed634dc76f3bf6ee700dfa8c4
-  - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/b/boost1.83/libboost1.83-dev_1.83.0-2+rb1_amd64.deb
-    digest: d921ca85cf57e2358eae1f1c70c51624d601a238f518d6b6aca97f251690b913
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/b/brotli/libbrotli-dev_1.1.0-1_amd64.deb
     digest: acd9fe5419f9f45dab72f4c8eef18342f875c0055d15121faed509e732d9e9ee
@@ -523,9 +453,6 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/libc/libcap2/libcap2_2.44-1_amd64.deb
     digest: 80964e76de54cf25286f16d15361610bfdda4c552da2c36e353428596bd4441a
   - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/c/capstone/libcapstone4_4.0.2-3-deepin1_amd64.deb
-    digest: 6b82dd7f3f4ff2bc1c59d2cd7180600bc9cafa1ec8752689e301ab04dd4e9713
-  - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/libc/libcloudproviders/libcloudproviders-dev_0.3.6-1_amd64.deb
     digest: 62b65e41982164ec34e967233af3c8ee2b664fda5e8974da5465388339728f73
   - kind: file
@@ -567,9 +494,6 @@ sources:
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/c/cups/libcupsimage2-dev_2.4.2-5_amd64.deb
     digest: edbd62424d38662c1c25037be7f8f6c17e618738579d2532aa71bb1a0a9e7da9
-  - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/c/curl/libcurl3-gnutls_8.5.0-2_amd64.deb
-    digest: b110cf015375ad4f835de12cbb70aede00733c1b61bc3380383a22423286c068
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/libd/libdatrie/libdatrie-dev_0.2.13-2_amd64.deb
     digest: 7a6b12d3cd86118d474aee670a809a5c24cfb9cfc8345fe60e45347c1b6f24f1
@@ -652,9 +576,6 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/libe/libepoxy/libepoxy0_1.5.9-2_amd64.deb
     digest: 7d0032dc45b3562329c8e98257e240affe8273209ad843b764eae8d2af77c137
   - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/libe/liberror-perl/liberror-perl_0.17029-1_all.deb
-    digest: b99aef4c44618ca8944e50c621de9eee5ec5090069eb7fa246bd284cbe67166b
-  - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/libe/libevdev/libevdev-dev_1.12.0+dfsg-1_amd64.deb
     digest: 7e338355abfb198b7fe4ff9d02f4b950f822965712d429e3a623e25509e41daf
   - kind: file
@@ -712,11 +633,11 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/libf/libfontenc/libfontenc1_1.1.4-1_amd64.deb
     digest: 758a94a3acf10d671cc056981255d2bca91e42d74e46edb27f3c89b9c5d5d3cf
   - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/f/freetype/libfreetype-dev_2.13.2+dfsg-1_amd64.deb
-    digest: 6a9eccea20ca09e8031c3c0a5375f073e9398ac8945cd7386bfd370720cc1136
+    url: https://pools.uniontech.com/deepin-beige/pool/main/f/freetype/libfreetype-dev_2.13.2+dfsg-1deepin1_amd64.deb
+    digest: 96d67a80be9adf8a9418e1dd33d2bf12d36bb12d4518297842fc8de29bf50763
   - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/f/freetype/libfreetype6_2.13.2+dfsg-1_amd64.deb
-    digest: 7efce6e9e2489e0f7b441b1c7b4a91a5013fbb7778d4ad6dfff7f2de47a6e7c3
+    url: https://pools.uniontech.com/deepin-beige/pool/main/f/freetype/libfreetype6_2.13.2+dfsg-1deepin1_amd64.deb
+    digest: 362fcb4c7c381338fd78bfa018b17b25f00596afb9c7d99c28b075944b20eb2b
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/f/fribidi/libfribidi-dev_1.0.8-2_amd64.deb
     digest: d5b8f027cfb7bc89d7c4738474763e58ba45086de427ef3fc31600896a14f9e8
@@ -729,9 +650,6 @@ sources:
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/m/mesa/libgbm1_24.0.1-1deepin3_amd64.deb
     digest: 7c865d2d2a271170fe22be2163dfeaa83130d3a5be53283c90fb296374d2e131
-  - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/g/gcc-13/libgcc-13-dev_13.2.0-3deepin2_amd64.deb
-    digest: 32572026b7b5716ce7841ad7bd1acdcf0e9658fa376214953d5231b78fd2eda9
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/g/gcc-13/libgcc-s1_13.2.0-3deepin2_amd64.deb
     digest: ff2d64158ae82f27ff107a3e2cc42e4b4986f048cadd4ce6cd97130cc3deacea
@@ -826,9 +744,6 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/g/gnutls28/libgnutls30_3.7.9-2_amd64.deb
     digest: d56ddf6802b16bc9c2ba21d8c5d6312e0620c9b96dfc11f8345d42c8233e9e74
   - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/g/gcc-13/libgomp1_13.2.0-3deepin2_amd64.deb
-    digest: 0c375f5bb8db4eb551acc961739f4fefebb3f905c6fad68ea7932ca5d1254b57
-  - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/libg/libgpg-error/libgpg-error0_1.47-3_amd64.deb
     digest: c7c00dbad22e7c549a25c147e3d471fae76d0c22d479c0de61aac4cf60e97f36
   - kind: file
@@ -889,9 +804,6 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/n/nettle/libhogweed6_3.7.3-1_amd64.deb
     digest: 0557f0e34a15444b6792c2726b5d1eb48f9ea8cd42bc7f4d697081e804ced558
   - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/g/gcc-13/libhwasan0_13.2.0-3deepin2_amd64.deb
-    digest: abf29172f20e2c9640b836942d284b2ec91fea98ed6c7dc9423f58f702b0d881
-  - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/f/firebird3.0/libib-util_3.0.11.33703.ds4-2+rb1_amd64.deb
     digest: aa2290489b3448003b901b0eab051ca2a1bfbd76dbc6863d36ce815392130905
   - kind: file
@@ -918,9 +830,6 @@ sources:
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/libi/libinput/libinput10_1.23.0-2_amd64.deb
     digest: df16e4386aac3702e0de6bf0fd2b6edeada0cfcd8b1cf750a7c62ee6cbf87fd4
-  - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/g/gcc-13/libitm1_13.2.0-3deepin2_amd64.deb
-    digest: e5c29a98df6ed83759aacc3f1f8a0ca01657f4a44ce2029c5445c3d3894621f5
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/j/jansson/libjansson4_2.14-2_amd64.deb
     digest: bbf5325c3ccfd468e1d8fdafb68c3ffaa89db1e0043e8e757b9f240452c67c26
@@ -994,9 +903,6 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/l/llvm-toolchain-17/libllvm17_17.0.6-5deepin1_amd64.deb
     digest: d4335b638011d8b79c5ec4b6bd2cd6ad00d84a87b1610b452de35f5e09a83def
   - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/g/gcc-13/liblsan0_13.2.0-3deepin2_amd64.deb
-    digest: a8dbadf3f468bd0ae28aaa3395ca8af40c7cae3708cc1c992c410ed4af3234a7
-  - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/libt/libtool/libltdl-dev_2.4.7-7deepin1_amd64.deb
     digest: 012432974abb34d0534a48fe76ad8940a0608c854180b448deb83f0594d93872
   - kind: file
@@ -1050,9 +956,6 @@ sources:
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/n/nettle/libnettle8_3.7.3-1_amd64.deb
     digest: d19dd4ebabccc00232223b414732c26b63d4ee67f4147ad5a105795f4514382a
-  - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/n/nghttp2/libnghttp2-14_1.59.0-1_amd64.deb
-    digest: f89f457cf7be4f40f310b83bfd4558c28072c3bb6cf2cf8cb6c9971a710e5a42
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/libn/libnsl/libnsl-dev_1.3.0-2_amd64.deb
     digest: f17e04a96da2dcb260bf75ac750a63d238942ecd9550ce41cc3530774c3ae807
@@ -1156,17 +1059,11 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/p/postgresql-16/libpq5_16.0-2+rb1_amd64.deb
     digest: 2c81d3cf6c7e0e49bcc04011c8c241ea26b8ce2e4dd94ae57f57158683c320ee
   - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/p/protozero/libprotozero-dev_1.7.1-1_amd64.deb
-    digest: 3caf97414a62007489c103631fe7b78c819fd5bdbe95278de957dd3f92bb0a98
-  - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/libp/libproxy/libproxy-dev_0.4.18-1.2_amd64.deb
     digest: 40e9c5e382b3ae0323b54b2460768167a9884a28cc15eb656bfcc8b5739669b4
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/libp/libproxy/libproxy1v5_0.4.18-1.2_amd64.deb
     digest: c4e7bd9b5fc83ce072951b5b46f5e46753bdac185570d0cd136475adb3a8a4d1
-  - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/libp/libpsl/libpsl5_0.21.0-1.2_amd64.deb
-    digest: 7a00b4f3ca191e7a887cbfc6b0ed619493bf5344b85c8e823577b115ec34f738
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/libp/libpthread-stubs/libpthread-stubs0-dev_0.4-1_amd64.deb
     digest: 8be922fba920a96d098288da4fa5f1d5dfb778b362d7a26ed738014305aa3787
@@ -1222,9 +1119,6 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtbase-opensource-src/libqt5xml5_5.15.8-1+deepin9_amd64.deb
     digest: 84d695ed9edbee4344785a0cdf5642a1f701754f7e8e5ce4e3f244869b52e356
   - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/g/gcc-13/libquadmath0_13.2.0-3deepin2_amd64.deb
-    digest: 446b0df912cbfb27899a6844353eafac7535696510c7af0f9389cd8ccc384770
-  - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/r/readline/libreadline8_8.2-3_amd64.deb
     digest: d7d4a492aa183701aad09f9ae4e156df8d4d5e336f40502f51c72cb5135cc296
   - kind: file
@@ -1236,9 +1130,6 @@ sources:
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/libr/librsvg/librsvg2-dev_2.54.7+dfsg-2deepin1_amd64.deb
     digest: 3bb918fcde65f0921803eff935ec2973867aa7b9671ac569a98ed92c5a6792db
-  - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/r/rtmpdump/librtmp1_2.4+20151223.gitfa8646d.1-deepin1_amd64.deb
-    digest: 9743d579d479e0e2ef99f984986b2d9d40d7e0a43b6f0f74b935f3fd2d5b6caa
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/c/cyrus-sasl2/libsasl2-2_2.1.28+dfsg1-4_amd64.deb
     digest: 9ff9bfa155660e99d78ab3501392fd17381adcb90bdf2457bac8c3af296b3815
@@ -1309,9 +1200,6 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/s/sqlite3/libsqlite3-dev_3.45.1-1_amd64.deb
     digest: 6fb14956d094d1715526fa3e57a0e582491d3f0f2f2400f067618c2770cd4f7b
   - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/libs/libssh2/libssh2-1_1.10.0-2_amd64.deb
-    digest: 01518dc04074da312967d3de567241403a8e4a28bcb932cd0331edc96cbe2220
-  - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/o/openssl/libssl-dev_3.2.0-2_amd64.deb
     digest: a31dbed7f735da64d956b7272c75341f0a2e2742818c2029ab29ca0d05c0c791
   - kind: file
@@ -1323,9 +1211,6 @@ sources:
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/s/startup-notification/libstartup-notification0-dev_0.12-deepin1_amd64.deb
     digest: d36752d62a6a63407eb76befea31cdbc678aa3cc06b4184a54064d6e83ac62fa
-  - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/g/gcc-13/libstdc++-13-dev_13.2.0-3deepin2_amd64.deb
-    digest: 9dba07d47442237db85afc8ff2dac8436bd6a877ee6364f3d7de68048c569adb
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/g/gcc-13/libstdc++6_13.2.0-3deepin2_amd64.deb
     digest: 8b8362c5c96e22487f2a3f96a41cd4ddb2d265bf8e991327f01b2c6c55f9a57b
@@ -1380,12 +1265,6 @@ sources:
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/libt/libtommath/libtommath1_1.2.0-6_amd64.deb
     digest: 701b56ef960f1d16544aa3ed55a54a18f2d1dc9547de07832a6704f0e86a44b1
-  - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/g/gcc-13/libtsan2_13.2.0-3deepin2_amd64.deb
-    digest: 2417df1f93af59d6fde9cc062ab0771caaf04e9533a0aeed1758d388f43f07a9
-  - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/g/gcc-13/libubsan1_13.2.0-3deepin2_amd64.deb
-    digest: de890cd4dbd6b6eea4c111bdbde5e7ef6a3fc623a9f1e0bcae352ea427214e16
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/u/uchardet/libuchardet-dev_0.0.7-1_amd64.deb
     digest: c6f9b502e938710aca86e426e0ffb68ee582c7b71794ab979216d39a5459cd19
@@ -1708,8 +1587,8 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/libz/libzstd/libzstd1_1.5.5+dfsg2-2_amd64.deb
     digest: 92fff5b68d38bc369552561614e82b841fc29587f1c2315842691493c52a5818
   - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/l/linux-upstream/linux-libc-dev_23.01.00.25_amd64.deb
-    digest: 6600785cee4dfdc4664c38e30a82266008dc005c711f44d7683261dba3e6d5c1
+    url: https://pools.uniontech.com/deepin-beige/pool/main/l/linux-upstream/linux-libc-dev_23.01.00.32_amd64.deb
+    digest: 5185a634b094c2ff95e8b6c870714d84886ba0ce0a1179bf3a3a10bbbfd9e181
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/m/m4/m4_1.4.18-5_amd64.deb
     digest: 576e11dd13258336302c42d839f52e74ff8b82dea551e913f3539c3d4e4acf92
@@ -1801,12 +1680,6 @@ sources:
     url: https://pools.uniontech.com/deepin-beige/pool/main/p/python3.11/python3.11-minimal_3.11.6-3_amd64.deb
     digest: ad91edaf5e6cb85c350e9fffdb9b68bb9deb4d8d3870f754467e1b27d20b60da
   - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qemu/qemu-user_8.2.0+ds-1deepin1_amd64.deb
-    digest: 826ef26398f0175b452080c9a48f7f58bdbecb996b7ab0b28cc3d492690383ec
-  - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/q/qemu/qemu-user-static_8.2.0+ds-1deepin1_amd64.deb
-    digest: d950b0779d4eb153cf07b8f8820aed052cb810966f986a1fc6cc5b40fcbf6dce
-  - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtbase-opensource-src/qt5-qmake_5.15.8-1+deepin9_amd64.deb
     digest: 6bc70fc7ec774ae283aa29e95445adb01a0037d2b8b7a06e190c4ae5a020daa9
   - kind: file
@@ -1821,9 +1694,6 @@ sources:
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/q/qtchooser/qtchooser_66-2_amd64.deb
     digest: 3b37eb666f63f196d83b68fb03f22ab40348ef65bf876da5d23bb1fc2d13c628
-  - kind: file
-    url: https://pools.uniontech.com/deepin-beige/pool/main/r/rapidjson/rapidjson-dev_1.1.0+dfsg2-7.1_all.deb
-    digest: 9d71cd0e7271dfd7055631a1862374b382784c9cb8a5c91b49cef5861d888c64
   - kind: file
     url: https://pools.uniontech.com/deepin-beige/pool/main/r/readline/readline-common_8.2-3_all.deb
     digest: 35fe59faceb8d9def8b6aa664e091eac8444887bc1f33ba2cf22099c3646e7bd
