@@ -15,12 +15,12 @@ RUNTIME_PKG_CONFIG_PATH=/runtime/lib/pkgconfig:/runtime/lib/${TRIPLET}/pkgconfig
 APP_PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig:$PREFIX/lib/${TRIPLET}/pkgconfig:$PREFIX/share/pkgconfig
 export PKG_CONFIG_PATH=$SYSTEM_PKG_CONFIG_PATH:$RUNTIME_PKG_CONFIG_PATH:$APP_PKG_CONFIG_PATH
 
-RUNTIME_C_INCLUDE_PATH=/runtime/lib/gcc/${TRIPLET}/13/include:/runtime/local/include:/runtime/lib/gcc/${TRIPLET}/13/include-fixed:/runtime/include/${TRIPLET}:/runtime/include
-SYSTEM_C_INCLUDE_PATH=/usr/lib/gcc/${TRIPLET}/13/include:/usr/local/include:/usr/lib/gcc/${TRIPLET}/13/include-fixed:/usr/include/${TRIPLET}:/usr/include
+RUNTIME_C_INCLUDE_PATH=/runtime/lib/gcc/${TRIPLET}/12/include:/runtime/local/include:/runtime/lib/gcc/${TRIPLET}/12/include-fixed:/runtime/include/${TRIPLET}:/runtime/include
+SYSTEM_C_INCLUDE_PATH=/usr/lib/gcc/${TRIPLET}/12/include:/usr/local/include:/usr/lib/gcc/${TRIPLET}/12/include-fixed:/usr/include/${TRIPLET}:/usr/include
 export C_INCLUDE_PATH=$RUNTIME_C_INCLUDE_PATH:$SYSTEM_C_INCLUDE_PATH
 
-RUNTIME_CPLUS_INCLUDE_PATH=/runtime/include/c++/13:/runtime/include/${TRIPLET}/c++/13
-SYSTEM_CPLUS_INCLUDE_PATH=/usr/include/c++/13:/usr/include/${TRIPLET}/c++/13
+RUNTIME_CPLUS_INCLUDE_PATH=/runtime/include/c++/12:/runtime/include/${TRIPLET}/c++/12
+SYSTEM_CPLUS_INCLUDE_PATH=/usr/include/c++/12:/usr/include/${TRIPLET}/c++/12
 
 export CPLUS_INCLUDE_PATH=$SYSTEM_CPLUS_INCLUDE_PATH:$SYSTEM_C_INCLUDE_PATH:$RUNTIME_CPLUS_INCLUDE_PATH:$RUNTIME_C_INCLUDE_PATH
 export PERL5LIB=$PREFIX/local/lib/${TRIPLET}/perl/5.28.1:$PREFIX/local/share/perl/5.28.1:$PREFIX/lib/${TRIPLET}/perl5/5.28:$PREFIX/share/perl5:$PREFIX/lib/${TRIPLET}/perl/5.28:$PREFIX/share/perl/5.28:$PREFIX/local/lib/site_perl:$PREFIX/lib/${TRIPLET}/perl-base
