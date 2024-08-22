@@ -16,6 +16,8 @@ build: |
   ./packages.bash > "$PREFIX/packages.list"
   # 跳过qtchooser安装
   echo Package: qtchooser >> "$PREFIX/packages.list"
+  # 安装构建依赖
+  bash ./install_dep linglong/sources "$PREFIX"
   # 初始化构建环境
   source init.bash
   # 开始构建
@@ -149,7 +151,7 @@ sources:
 
   # linglong:gen_dsc_source end
 
-  # linglong:gen_deb_source sources loong64 https://ci.deepin.com/repo/deepin/deepin-community/backup/rc2/ beige main
+  # linglong:gen_deb_source sources loong64 https://ci.deepin.com/repo/deepin/deepin-community/backup/rc2 beige main
   # qtbase构建依赖
   # linglong:gen_deb_source install default-libmysqlclient-dev, firebird-dev [kfreebsd-any linux-any], freetds-dev, libasound2-dev [linux-any], libatspi2.0-dev, libcups2-dev, libdbus-1-dev, libdouble-conversion-dev, libdrm-dev [linux-any], libfontconfig1-dev, libfreetype6-dev, libgbm-dev [linux-any kfreebsd-any], libgl-dev, libgles-dev, libglib2.0-dev, libglu1-mesa-dev | libglu-dev, libgtk-3-dev, libharfbuzz-dev (>= 1.6.0~), libicu-dev, libinput-dev [linux-any], libjpeg-dev, libkrb5-dev, libmd4c-dev, libmtdev-dev [linux-any], libpcre2-dev, libpng-dev, libpq-dev, libproxy-dev, libpulse-dev, libsqlite3-dev, libssl-dev, libudev-dev [linux-any], libvulkan-dev [linux-any], libx11-dev, libx11-xcb-dev, libxcb-glx0-dev, libxcb-icccm4-dev, libxcb-image0-dev, libxcb-keysyms1-dev, libxcb-randr0-dev, libxcb-render-util0-dev, libxcb-render0-dev, libxcb-shape0-dev, libxcb-shm0-dev, libxcb-sync-dev, libxcb-util-dev, libxcb-xfixes0-dev, libxcb-xinerama0-dev, libxcb-xinput-dev, libxcb-xkb-dev, libxcb1-dev, libxext-dev, libxi-dev, libxkbcommon-dev, libxkbcommon-x11-dev, libxrender-dev, libzstd-dev, pkg-config, pkg-kde-tools (>= 0.15.17~), publicsuffix, unixodbc-dev, zlib1g-dev
   # qtsvg构建依赖
