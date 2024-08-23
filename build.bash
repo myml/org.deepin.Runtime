@@ -20,4 +20,5 @@ do
         echo "Can not build $pkg"
         exit 1
     fi
+    ldconfig -C "$LINGLONG_LD_SO_CACHE"
 done
