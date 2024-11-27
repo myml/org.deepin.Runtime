@@ -12,3 +12,6 @@ for triplet in $tripletList; do
 done
 # https://doc.qt.io/qt-5/qtqml-syntax-imports.html#qml-import-path
 export QML2_IMPORT_PATH=$QML_IMPORT_PATH
+# 设置环境变量，方便在终端中使用qt工具
+export PATH=$PATH:/runtime/lib/qt5/bin
+export CMAKE_PREFIX_PATH=/usr:/runtime:$PREFIX
