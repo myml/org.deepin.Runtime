@@ -50,6 +50,8 @@ while IFS= read -r deb_file; do
     fi
     # 记录到 packages.list
     echo "Package: $pkg" >>"$PREFIX/packages.list"
+    # 换行
+    echo ""
     # 缓存解压后的data.tar文件，便于在下次使用时，加快安装速度
     deb_sha=$(sha256sum "$deb_file" | awk '{print $1}')
     data_cache="$cache_dir/install_dep_$deb_sha"
@@ -67,11 +69,6 @@ while IFS= read -r deb_file; do
             ;;
         esac
         mv "$data_cache_tmp" "$data_cache"
-        # 换行
-        echo ""
-    else
-        # 使用缓存
-        echo " cached"
     fi
     # 解压data.tar文件到输出目录
     mkdir "$data_list_dir"
