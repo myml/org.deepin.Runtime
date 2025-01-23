@@ -13,6 +13,8 @@ sources=(
     qt6-wayland
     qt6-translations
     qt6-5compat
+    qt6-webengine
+    qt6-webchannel
 )
 sources+=(
     dtk6core
