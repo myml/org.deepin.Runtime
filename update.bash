@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-poolURL=http://10.20.64.92:8080/testing_daily/pool
+poolURL=http://10.20.64.92:8080/testing25_daily/pool
 codename=main
 sources=(
     qt6-base
@@ -56,7 +56,7 @@ sed -i '/libfcitx5-qt1/d' install.list.tmp
 sed -i '/libfcitx5-qt-dev/d' install.list.tmp
 sed -i '/fcitx5-frontend-qt5/d' install.list.tmp
 
-for file in linglong.yaml arm64/linglong.yaml loong64/linglong.yaml; do
+for file in linglong.yaml arm64/linglong.yaml loong64/linglong.yaml sw64/linglong.yaml; do
     grep -B 1000 'linglong:gen_deb_source sources' $file >$file.bk
     cat install.list.tmp >>$file.bk
     mv $file.bk $file
