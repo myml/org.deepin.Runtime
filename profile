@@ -7,6 +7,7 @@ tripletList=$(cat /etc/linglong-triplet-list)
 for triplet in $tripletList; do
     export QT_QPA_PLATFORM_PLUGIN_PATH="/runtime/lib/$triplet/qt6/plugins/platforms"
     export QML_IMPORT_PATH="/runtime/lib/$triplet/qt6/qml:$QML_IMPORT_PATH"
+    export QT_PLUGIN_PATH="/runtime/lib/$triplet/qt6/plugins"
     break
 done
 # https://doc.qt.io/qt-5/qtqml-syntax-imports.html#qml-import-path
