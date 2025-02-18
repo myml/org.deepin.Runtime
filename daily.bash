@@ -10,4 +10,5 @@ cd vscode-linglong
 for file in linglong.yaml arm64/linglong.yaml loong64/linglong.yaml sw64/linglong.yaml; do
     sed -i "s#version: 25.2.0.*#version: 25.2.0.$t#" ../$file
     go run ./src/tools ../$file
+    sed -i "s#id: com.uniontech.runtime.dtk\$#id: com.uniontech.runtime.webengine#" ../$file
 done
