@@ -1,10 +1,10 @@
 version: "1"
 
 package:
-  id: com.uniontech.runtime.dtk
+  id: com.uniontech.runtime.webengine
   name: deepin runtime
   kind: runtime
-  version: 25.2.0.1741096361
+  version: 25.2.0.1741096439
   description: |
     Qt is a cross-platform C++ application framework. Qt's primary feature
     is its rich set of widgets that provide standard GUI functionality.
@@ -142,6 +142,28 @@ sources:
   # linglong:gen_deb_source install libqt6core5compat6
   # linglong:gen_deb_source install qml6-module-qt5compat-graphicaleffects
   # linglong:gen_deb_source install qt6-5compat-dev
+  # source package qt6-webengine
+  # linglong:gen_deb_source install libqt6pdf6
+  # linglong:gen_deb_source install libqt6pdfquick6
+  # linglong:gen_deb_source install libqt6pdfwidgets6
+  # linglong:gen_deb_source install libqt6webengine6-data
+  # linglong:gen_deb_source install libqt6webenginecore6-bin
+  # linglong:gen_deb_source install libqt6webenginecore6
+  # linglong:gen_deb_source install libqt6webenginequick6
+  # linglong:gen_deb_source install libqt6webenginewidgets6
+  # linglong:gen_deb_source install qml6-module-qtquick-pdf
+  # linglong:gen_deb_source install qml6-module-qtwebengine-controlsdelegates
+  # linglong:gen_deb_source install qml6-module-qtwebengine
+  # linglong:gen_deb_source install qt6-image-formats-plugin-pdf
+  # linglong:gen_deb_source install qt6-pdf-dev
+  # linglong:gen_deb_source install qt6-webengine-dev-tools
+  # linglong:gen_deb_source install qt6-webengine-dev
+  # linglong:gen_deb_source install qt6-webengine-private-dev
+  # source package qt6-webchannel
+  # linglong:gen_deb_source install libqt6webchannel6
+  # linglong:gen_deb_source install libqt6webchannelquick6
+  # linglong:gen_deb_source install qml6-module-qtwebchannel
+  # linglong:gen_deb_source install qt6-webchannel-dev
   # source package dtk6core
   # linglong:gen_deb_source install libdtk6core-bin
   # linglong:gen_deb_source install libdtk6core-dev
@@ -1117,6 +1139,12 @@ sources:
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-wayland/libqt6waylandcompositor6_6.8.0-0deepin4_sw64.deb
     digest: 2fd16ce5558a7df2c1a7294fe0205ccc35c62e097956b8035928fe64da812d28
   - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webchannel/libqt6webchannel6_6.8.0-0deepin_sw64.deb
+    digest: 9f1a492422c82be3e340228a310306182b24c820346e71f08a1e7a1b277e96f5
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webchannel/libqt6webchannelquick6_6.8.0-0deepin_sw64.deb
+    digest: 7175f787aaffb45db51b1d46b49f8feebf44fdf962e9ca8e26ceff246caa9482
+  - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-base/libqt6widgets6_6.8.0+dfsg-0deepin5_sw64.deb
     digest: e8ecd22d4718139ca978f9065efa159d76fe4b6145f565bfd7dd79348e875a5d
   - kind: file
@@ -1723,6 +1751,9 @@ sources:
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-wayland/qml6-module-qtwayland-compositor_6.8.0-0deepin4_sw64.deb
     digest: 402cdc28290f330f779ee8cab84561f536066b8d845071dc55ef8292612ed0ee
   - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webchannel/qml6-module-qtwebchannel_6.8.0-0deepin_sw64.deb
+    digest: 523b953fa4c5b15f598336806a15b897f1063595705270276d0af5e0e1ddfdbe
+  - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-declarative/qmlscene-qt6_6.8.0+dfsg-0deepin3_sw64.deb
     digest: 41cf9a949cd62ac554ce700d2d27679f05f7ebfa4fdfa0591714a1a89c53b180
   - kind: file
@@ -1809,6 +1840,9 @@ sources:
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-wayland/qt6-wayland_6.8.0-0deepin4_sw64.deb
     digest: e24fe8f6bf55b116cb407271fd425e69a5ebbc0bd335b92903bae024e92963b5
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webchannel/qt6-webchannel-dev_6.8.0-0deepin_sw64.deb
+    digest: 580004a16b6dedde20f2fc8918710aff8a3c8d3636f26ea0bd715213107db490
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-base/qt6-xdgdesktopportal-platformtheme_6.8.0+dfsg-0deepin5_sw64.deb
     digest: 4dc1ebac894677729d0221c6b5199ee17574453759ac96b9f8c50479a12edcf9

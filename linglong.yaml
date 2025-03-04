@@ -1,10 +1,10 @@
 version: "1"
 
 package:
-  id: com.uniontech.runtime.dtk
+  id: com.uniontech.runtime.webengine
   name: deepin runtime
   kind: runtime
-  version: 25.2.0.1741096361
+  version: 25.2.0.1741096439
   description: |
     Qt is a cross-platform C++ application framework. Qt's primary feature
     is its rich set of widgets that provide standard GUI functionality.
@@ -142,6 +142,28 @@ sources:
   # linglong:gen_deb_source install libqt6core5compat6
   # linglong:gen_deb_source install qml6-module-qt5compat-graphicaleffects
   # linglong:gen_deb_source install qt6-5compat-dev
+  # source package qt6-webengine
+  # linglong:gen_deb_source install libqt6pdf6
+  # linglong:gen_deb_source install libqt6pdfquick6
+  # linglong:gen_deb_source install libqt6pdfwidgets6
+  # linglong:gen_deb_source install libqt6webengine6-data
+  # linglong:gen_deb_source install libqt6webenginecore6-bin
+  # linglong:gen_deb_source install libqt6webenginecore6
+  # linglong:gen_deb_source install libqt6webenginequick6
+  # linglong:gen_deb_source install libqt6webenginewidgets6
+  # linglong:gen_deb_source install qml6-module-qtquick-pdf
+  # linglong:gen_deb_source install qml6-module-qtwebengine-controlsdelegates
+  # linglong:gen_deb_source install qml6-module-qtwebengine
+  # linglong:gen_deb_source install qt6-image-formats-plugin-pdf
+  # linglong:gen_deb_source install qt6-pdf-dev
+  # linglong:gen_deb_source install qt6-webengine-dev-tools
+  # linglong:gen_deb_source install qt6-webengine-dev
+  # linglong:gen_deb_source install qt6-webengine-private-dev
+  # source package qt6-webchannel
+  # linglong:gen_deb_source install libqt6webchannel6
+  # linglong:gen_deb_source install libqt6webchannelquick6
+  # linglong:gen_deb_source install qml6-module-qtwebchannel
+  # linglong:gen_deb_source install qt6-webchannel-dev
   # source package dtk6core
   # linglong:gen_deb_source install libdtk6core-bin
   # linglong:gen_deb_source install libdtk6core-dev
@@ -306,6 +328,9 @@ sources:
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/i/init-system-helpers/init-system-helpers_1.66_all.deb
     digest: 85f3384206e81228af3630ccde8f78d84e7c22592f51e238244525e36fb90b03
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/i/isa-support/isa-support_20_amd64.deb
+    digest: fe72b29cb53b739db213b2595edb4c44ad20da6b97c6b7b87aa54d578b81ee0b
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/i/iso-codes/iso-codes_4.16.0-1_all.deb
     digest: a3e58feb7d3a82cda0266192bea50a1512d0083b69ab54bcba95be059cb28f3f
@@ -589,6 +614,9 @@ sources:
     url: http://10.20.64.92:8080/pro25_daily/pool/main/libe/libevdev/libevdev2_1.12.0+dfsg-1_amd64.deb
     digest: ef07517af93659411282a1d306eba0713bb597250d97037df52c596d1525c0f5
   - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/libe/libevent/libevent-2.1-7_2.1.12-stable-8deepin1_amd64.deb
+    digest: 9a052ec06e6e04ee1d388f526ecd0bc62a279444c3dc24547faa083a93f2bb2e
+  - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/e/expat/libexpat1-dev_2.6.0-1_amd64.deb
     digest: c3487043d2eb2845c1e53a9db5c584e2403b7f98d21b4c4c0c04a51d50b9a829
   - kind: file
@@ -751,6 +779,9 @@ sources:
     url: http://10.20.64.92:8080/pro25_daily/pool/main/g/gumbo-parser/libgumbo2_0.12.0+dfsg-2_amd64.deb
     digest: d07c28bc450b0ab6f2ecd7ab78fb3dd03d12f514d374a5f0755e3ca3e52b873f
   - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/h/harfbuzz/libharfbuzz-subset0_8.0.1-1_amd64.deb
+    digest: aeeaaafd5644f0b3b2420f9410668ef42efa3c5f7e94f0b48f967cdfd8c8e476
+  - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/h/harfbuzz/libharfbuzz0b_8.0.1-1_amd64.deb
     digest: ccd3cff05ed828c812815a705e8f5aed5a08216dda02547ac929f3f0c95e2afc
   - kind: file
@@ -862,6 +893,9 @@ sources:
     url: http://10.20.64.92:8080/pro25_daily/pool/main/m/md4c/libmd4c0_0.4.8-1_amd64.deb
     digest: 30887a351621b57f2af0e6226d7754d5d21c10ceeb073fd815011eefd8f20d57
   - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/z/zlib/libminizip1_1.3.dfsg+really1.3.1-1deepin1_amd64.deb
+    digest: 915f272a1568965d3fe198d0b5415e2e076c763706d3247abbf0d42d78ac9122
+  - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/libm/libmng/libmng1_1.0.10+dfsg-3.1-deepin1_amd64.deb
     digest: be8cd8fdee36d52e683df1d587074886bf404b7c06273bed042cb64c65596aaf
   - kind: file
@@ -897,6 +931,12 @@ sources:
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/libn/libnsl/libnsl2_1.3.0-2_amd64.deb
     digest: 8cdf394b2ad234d1ed78a6545192d883877651c25fb2aa938abd3b7edba5c9f0
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/n/nspr/libnspr4_4.35-1deepin1_amd64.deb
+    digest: 65389ad409d6181469ea83555f2205ece39ed0a6c18399405393a6086edfb701
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/n/nss/libnss3_3.105-2_amd64.deb
+    digest: 10e933e69cddb714fd5a2e2667a95ea117c14667d25923cd2fb5705ffaf028e0
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/n/numactl/libnuma1_2.0.14-3deepin1_amd64.deb
     digest: c186c30d2f1c67976e70540fa3229dc996496c8e8a6095c68a3ca9ba4a8afd72
@@ -1054,6 +1094,24 @@ sources:
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-base/libqt6openglwidgets6_6.8.0+dfsg-0deepin5_amd64.deb
     digest: df6232b53e26d4e7d4982263b9e8ba2a28ecff459618d5ee00025807536c43aa
   - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/libqt6pdf6_6.6.3-0deepin7_amd64.deb
+    digest: 87c82fb8100682ddcfbbe845a7d566ae5002675e18f10ed1543528466d1129e0
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/libqt6pdfquick6_6.6.3-0deepin7_amd64.deb
+    digest: ee833d015cf417637c33885cb3bd3504b6b54b9ade1cdb59bd2f653b6aa6d3bb
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/libqt6pdfwidgets6_6.6.3-0deepin7_amd64.deb
+    digest: ce1a535caa463d77af53e94922fe693cd7d74c0e0214db927937d76437640c92
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-positioning/libqt6positioning6-plugins_6.8.0-0deepin_amd64.deb
+    digest: 8d5637027617626d03b23ceb1e575250d735fd665807d86b5161fcee938b182f
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-positioning/libqt6positioning6_6.8.0-0deepin_amd64.deb
+    digest: f00ea6721dc09acbf8e58e75383eff36b1a8bc6695b45109a5fb80414fcbe1f6
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-positioning/libqt6positioningquick6_6.8.0-0deepin_amd64.deb
+    digest: 7cce3f9a82e5ec2ef602048e5d49b1b0fe39830303648f2880ad29d4a2bb8f27
+  - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-base/libqt6printsupport6_6.8.0+dfsg-0deepin5_amd64.deb
     digest: 6d1bad1451c68f2013e28c21406e13996468591e5bad691cea4011ba6a4b3526
   - kind: file
@@ -1092,6 +1150,9 @@ sources:
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-declarative/libqt6quickwidgets6_6.8.0+dfsg-0deepin3_amd64.deb
     digest: 6bc70ebab84deae7cde139fe62a2ace7dc3090ec8a2c35aff92ceda6e21f7423
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-serialport/libqt6serialport6_6.8.0-0deepin_amd64.deb
+    digest: bf8857dc5f1335a94830779fd8b8f439fc6ee38a56576cc4d67c44263cbaa334
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-shadertools/libqt6shadertools6_6.8.0-0deepin1_amd64.deb
     digest: fa17afd89f03e3156bd292a92d0f49699d66bd1f1a706ad45c5f10b0657e4488
@@ -1137,6 +1198,27 @@ sources:
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-wayland/libqt6waylandcompositor6_6.8.0-0deepin4_amd64.deb
     digest: b41cb2dbbd47755cfb59959663a7d808ae8f972ba60fce559c2b9db06a71559f
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webchannel/libqt6webchannel6_6.8.0-0deepin_amd64.deb
+    digest: b6278d5ee9a3b4b2433510e1e7ae4cd6c812b49979cf0da0a75e5ee28ea7c258
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webchannel/libqt6webchannelquick6_6.8.0-0deepin_amd64.deb
+    digest: 3558a69ac37dc0e382809312d32117259137d459f521c2b9e6eeb9b7e6ce163b
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/libqt6webengine6-data_6.6.3-0deepin7_amd64.deb
+    digest: d93ac5ce5e8ddfa2c6238119d64daa20f4297bfbcb64cc1e792a560fc48d9755
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/libqt6webenginecore6-bin_6.6.3-0deepin7_amd64.deb
+    digest: 67fd7c5d00096fa754f4aeecb43ac46588be501c1386805fb78d185fdbb2fb52
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/libqt6webenginecore6_6.6.3-0deepin7_amd64.deb
+    digest: 4183c5a403b1860b14aa8f5705584b9035e138207a286217e2cda05e357221e5
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/libqt6webenginequick6_6.6.3-0deepin7_amd64.deb
+    digest: 9153620dfd18669bb499fe6c42d0ae9cc3409566d68c4a21bd4c60483e23ca1a
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/libqt6webenginewidgets6_6.6.3-0deepin7_amd64.deb
+    digest: 7bcf429a0b318745b7e39062219e3b245c32a2eaa53d7447ae1429bce39f5687
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-base/libqt6widgets6_6.8.0+dfsg-0deepin5_amd64.deb
     digest: 96a017e58fd1de1aa4f99c69d6096e871c24eddcdd1e927beb53ea41dea8dd2c
@@ -1534,6 +1616,9 @@ sources:
     url: http://10.20.64.92:8080/pro25_daily/pool/main/libx/libxkbcommon/libxkbcommon0_1.6.0-1_amd64.deb
     digest: a99bcf05041087303491f2dc7dee290c02e38b66e000c7eb9bb71f6aec9c1a2e
   - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/libx/libxkbfile/libxkbfile1_1.1.0-1_amd64.deb
+    digest: e1f7096942f16d48d601064da8fc42b645624598ab37846adc2c1fbbad223e76
+  - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/libx/libxml2/libxml2_2.9.14+dfsg-1.3_amd64.deb
     digest: 27ed9a3b82a1665063ed3e518a2ec00df8c4c8404ad445a3de6aa4971e01741c
   - kind: file
@@ -1545,6 +1630,12 @@ sources:
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/libx/libxshmfence/libxshmfence1_1.3-1_amd64.deb
     digest: 9b4e96787bd210d33137c8c36af9f03aadb797a6231c24a60cbd47e8d1fcd7da
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/libx/libxslt/libxslt1.1_1.1.35-1_amd64.deb
+    digest: fca6d09d9aa5d9e6cfd2d5ca6dde42c4239a5a8f8583275ea4564b7a409282be
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/libx/libxtst/libxtst6_1.2.3-1_amd64.deb
+    digest: 3160e470bf8c3a70de0a169420d43b1e8c60334462680dc538c100d8feb655ca
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/x/xvidcore/libxvidcore4_1.3.7-1_amd64.deb
     digest: 520fa549aafd0694ca45debfc793531fde54c0bbbd621b03d5a4b944a743ca99
@@ -1735,6 +1826,9 @@ sources:
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-declarative/qml6-module-qtquick-particles_6.8.0+dfsg-0deepin3_amd64.deb
     digest: 858ee5e51cc10904241bbddcd4842645e753d6336e3634a1372d5e7bc3bafea6
   - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/qml6-module-qtquick-pdf_6.6.3-0deepin7_amd64.deb
+    digest: 1be990414059b334b64fcea0b5cbd80ceccd41a8fddd8deba33b83724404910a
+  - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-declarative/qml6-module-qtquick-shapes_6.8.0+dfsg-0deepin3_amd64.deb
     digest: 9d568f7c7c8b18f9afb4159b48711cb192286d4001e63cad94f002b6c63b40f6
   - kind: file
@@ -1764,6 +1858,15 @@ sources:
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-wayland/qml6-module-qtwayland-compositor_6.8.0-0deepin4_amd64.deb
     digest: aa5383d3c9879fd853b34023479c1d8728f93c4a9ac348e807de42bf5b7026d5
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webchannel/qml6-module-qtwebchannel_6.8.0-0deepin_amd64.deb
+    digest: 0bfdc4f259c26cfa07db893f943dc9679617bf8026db3738dfe90acf72299125
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/qml6-module-qtwebengine-controlsdelegates_6.6.3-0deepin7_amd64.deb
+    digest: 28dea945d472caa9bc5cb13552f6ad880f6de373a843849807ba8c36a97ac4ae
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/qml6-module-qtwebengine_6.6.3-0deepin7_amd64.deb
+    digest: b0aaa03f8288e9e338c19e5953896b736eb87c8de5929f6a0cc17a5242393305
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-declarative/qmlscene-qt6_6.8.0+dfsg-0deepin3_amd64.deb
     digest: c61d0af9ce31b9b9ad4a946ea2ab4cd695b5e0cd636de584e44e2a3ddcaf7f10
@@ -1795,6 +1898,9 @@ sources:
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-base/qt6-gtk-platformtheme_6.8.0+dfsg-0deepin5_amd64.deb
     digest: 9a2d8352a67d85a9adcc7e6cb1d084abc575190ef92085a1a775ef5f2e46759c
   - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/qt6-image-formats-plugin-pdf_6.6.3-0deepin7_amd64.deb
+    digest: c81f1e4af51ba9642957230db7c5bf8752654a199314240896266856d429c206
+  - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-imageformats/qt6-image-formats-plugins_6.8.0-0deepin_amd64.deb
     digest: 40a402f44c6b40d473e7f39d763f59221f57eceb170996273985c861c03e2b3c
   - kind: file
@@ -1803,6 +1909,12 @@ sources:
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-multimedia/qt6-multimedia-dev_6.8.0-0deepin_amd64.deb
     digest: 11867cf42d0ad79eac7077dc508968a3f463aa95f329bc9fa4bdc31bd7d23fc3
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/qt6-pdf-dev_6.6.3-0deepin7_amd64.deb
+    digest: 2a69395d01511bb39b2518143ed50d5c9b52172fc6e66c5e4b0a1114ca2b074b
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-positioning/qt6-positioning-dev_6.8.0-0deepin_amd64.deb
+    digest: 4cc2b91b7bc13f957535e400fbea8e76430661adea35d73b02f0e659e53bb012
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-declarative/qt6-qmllint-plugins_6.8.0+dfsg-0deepin3_amd64.deb
     digest: 19d73834f2cc9cb4c31840d3e298d586183d226709c751c667863506de00c4fe
@@ -1852,6 +1964,18 @@ sources:
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-wayland/qt6-wayland_6.8.0-0deepin4_amd64.deb
     digest: 12410a52b41b1467d4a052dc8233ead063ab43f7dcc8b50275422c4c3bc934b0
   - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webchannel/qt6-webchannel-dev_6.8.0-0deepin_amd64.deb
+    digest: 18b4ed2050669ddd7dcd07b73c784a73e021ce60c732454e8a218fae9d21eb81
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/qt6-webengine-dev-tools_6.6.3-0deepin7_amd64.deb
+    digest: 230ce0f50a0fded671f4adc5bfc0a3337929cbffe3823fdaa75e30aed23a8a05
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/qt6-webengine-dev_6.6.3-0deepin7_amd64.deb
+    digest: 099e7c945a61152a29ab6d2ff06a622bfcd35e993acee114290c1df1f022f98d
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-webengine/qt6-webengine-private-dev_6.6.3-0deepin7_amd64.deb
+    digest: c1bb40e644b0a09eb71bce4cf321fa55861b4ba718744c07413edac22c3091b8
+  - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/q/qt6-base/qt6-xdgdesktopportal-platformtheme_6.8.0+dfsg-0deepin5_amd64.deb
     digest: 979cd424fec8e7f8adf8d558cb8da828093cebaef95d8e76b67dd64c4e2ff391
   - kind: file
@@ -1863,6 +1987,9 @@ sources:
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/s/shared-mime-info/shared-mime-info_2.2-1_amd64.deb
     digest: c1c8273b9feb0ba8fe3a1b79328df0aaeab370cfc3d70f4fa3fefaa5bde5bf62
+  - kind: file
+    url: http://10.20.64.92:8080/pro25_daily/pool/main/i/isa-support/sse3-support_20_amd64.deb
+    digest: 5c8a7cd629198bd367659c392fb41dd6a39bae9eae2c2382c9559a2e9408ed2d
   - kind: file
     url: http://10.20.64.92:8080/pro25_daily/pool/main/s/systemd/systemd-dev_255.2-4deepin6_all.deb
     digest: 6c9f0aa25673f182d15522eb53c3cb72efed1019ff838df5e745a4dd24251255
