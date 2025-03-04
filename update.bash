@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-poolURL=http://10.20.64.92:8080/testing25_daily/pool
+poolURL=http://10.20.64.92:8080/pro25_daily/pool
 codename=main
 sources=(
     qt6-base
@@ -22,7 +22,6 @@ sources+=(
     dtk6log
     dde-qt6platform-plugins
     qt6integration
-    fcitx5-qt
 )
 
 # 兼容旧版本runtime
