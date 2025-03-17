@@ -35,8 +35,9 @@ sources+=(
 # 解决功能问题
 sources+=(
     # 解决 ctrl+shift+? 快捷键对话框
-    # deepin-shortcut-viewer
+    deepin-shortcut-viewer
 )
+# 查找源码包的所有二进制包，过滤掉调试符号、例子、文档等非二进制包
 rm install.list.tmp || true
 for src in "${sources[@]}"; do
     echo "Source $src" >&2
@@ -52,11 +53,13 @@ for src in "${sources[@]}"; do
     done
 done
 
+# 删除依赖qt5的包
 sed -i '/libfcitx5-qt1/d' install.list.tmp
 sed -i '/libfcitx5-qt-dev/d' install.list.tmp
 sed -i '/fcitx5-frontend-qt5/d' install.list.tmp
 
 for file in linglong.yaml arm64/linglong.yaml loong64/linglong.yaml sw64/linglong.yaml; do
+    # 删除gen_deb_source后面的内容，将二进制包补充进去
     grep -B 1000 'linglong:gen_deb_source sources' $file >$file.bk
     cat install.list.tmp >>$file.bk
     mv $file.bk $file
