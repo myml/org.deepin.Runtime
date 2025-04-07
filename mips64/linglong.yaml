@@ -1,7 +1,7 @@
 version: "1"
 
 package:
-  id: org.deepin.runtime.dtk
+  id: org.deepin.runtime.webengine
   name: deepin runtime
   kind: runtime
   version: 25.2.0.2000000005
